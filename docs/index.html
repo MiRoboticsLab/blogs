@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Robot</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <link rel="stylesheet" href="./libs/vue.css" />
+  <link rel="stylesheet" href="./libs/gitalk.css" />
+  <link rel="stylesheet" href="./libs/docsify-darklight-theme.css">
+  <style>
+    .app-nav li ul a {
+      font-size: 13px;
+    }
+    .app-name-link img {
+      height: 100px;
+    }
+    .cover-main p img {
+      width: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <!-- Docsify v4 -->
+  <script src="./libs/docsify@4.js"></script>
+  <script src="./libs/gitalk.plugins.js"></script>
+  <script src="./libs/gitalk.min.js"></script>
+  <!-- <script>
+    const gitalk = new Gitalk({
+      clientID: "a2bdae5457402030fb6b", // GitHub Application Client ID.
+      clientSecret: "c1c9ce6f3334a85f5456b602ca138dee038fd414", // GitHub Application Client Secret.
+      repo: "robot_blog",
+      owner: "BerserkerRider",
+      admin: ["zeroone001"],
+      perPage: 20,
+      language: "zh-CN",
+      labels: [],
+      // pagerDirection: "last", 页面方向，默认last
+      distractionFreeMode: true, // 无干扰模式
+      // title: "Welcome to join the Doocs Open Source organization",
+      id: 'home',
+      proxy: "https://forward-github.cyberdog.xiaomi.com/get_access_token",
+    });
+  </script> -->
+  <script>
+    var gitalkConfig = {
+      clientID: "a2bdae5457402030fb6b", // GitHub Application Client ID.
+      clientSecret: "c1c9ce6f3334a85f5456b602ca138dee038fd414", // GitHub Application Client Secret.
+      repo: "blogs",
+      owner: "MiRoboticsLab",
+      admin: ["zeroone001"],
+      perPage: 20,
+      language: "zh-CN",
+      labels: [],
+      // pagerDirection: "last", 页面方向，默认last
+      distractionFreeMode: true, // 无干扰模式
+      // title: "Welcome to join the Doocs Open Source organization",
+      // id: 'home',
+      proxy: "https://forward-github.cyberdog.xiaomi.com/get_access_token",
+    };
+    window.$docsify = {
+      name: 'blogs',
+      repo: 'https://github.com/MiRoboticsLab/blogs',
+      loadSidebar: true,
+      loadNavbar: true,
+      auto2top: true, // 切换页面后是否自动跳转到页面顶部
+      mergeNavbar: true, // 小屏设备下合并导航栏到侧边栏
+      subMaxLevel: 2, // 开启目录功能
+      homepage: "README.md",
+      logo: '/_media/icon.png',
+      // coverpage: ['/', '/en/'],
+      formatUpdated: '{MM}/{DD} {HH}:{mm}',
+      // onlyCover: true, // 只在访问主页时加载封面
+      darklightTheme: {
+        defaultTheme: 'light',
+        siteFont: 'Source Sans Pro,Helvetica Neue,Arial,sans-serif',
+        codeFontFamily: 'Roboto Mono, Monaco, courier, monospace',
+        bodyFontSize: '15px',
+        dark: {
+          background: '#191919',
+          highlightColor: '#e96900',
+          codeBackgroundColor: '#202020',
+          codeTextColor: '#b4b4b4',
+        },
+        light: {
+          highlightColor: '#e96900',
+        }
+      },
+      search: {
+        noData: {
+          "/en/": "No results!",
+          "/": "找不到结果!"
+        },
+        // paths: "auto",
+        depth: 6,
+        placeholder: {
+          "/en/": "Search",
+          "/": "搜索"
+        },
+      },
+      plugins: [
+        function(hook, vm) {
+          hook.beforeEach(function(html) {
+            var url =
+              "https://github.com/MiRoboticsLab/blogs/tree/master/docs/" +
+              vm.route.file;
+            var editHtml = "[GO GITHUB](" + url + ")\n";
+
+            return editHtml + html;
+          });
+
+          hook.doneEach(function() {
+            var label, domObj, main, divEle, gitalk;
+            label = vm.route.path.split("/").pop();
+            domObj = Docsify.dom;
+            main = domObj.getNode("#main");
+            console.log('label', label);
+            /**
+             * render gittalk
+             */
+            if (vm.route.path.includes("en")) {
+              gitalkConfig.language = "en";
+            } else {
+              gitalkConfig.language = "zh-CN";
+            }
+            Array.apply(
+              null,
+              document.querySelectorAll("div.gitalk-container")
+            ).forEach(function(ele) {
+              ele.remove();
+            });
+            divEle = domObj.create("div");
+            divEle.id = "gitalk-container-" + label;
+            divEle.className = "gitalk-container";
+            divEle.style = "width: " + main.clientWidth + "px; margin: 0 auto 20px;";
+            domObj.appendTo(domObj.find(".content"), divEle);
+            gitalk = new Gitalk(
+              Object.assign(gitalkConfig, { id: !label ? "home" : label })
+            );
+            gitalk.render("gitalk-container-" + label);
+          });
+        },
+      ]
+    }
+  </script>
+  <script src="./libs/search.min.js"></script>
+  <script src="./libs/docsify-darklight-theme@latest.js"></script>
+  <script src="./libs/emoji.min.js"></script>
+  <script src="./libs/docsify-copy-code.min.js"></script>
+</body>
+</html>
