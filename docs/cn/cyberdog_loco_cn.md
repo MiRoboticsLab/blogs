@@ -859,12 +859,12 @@ root@TinaLinux:~# ./example_motor_ctrl #运行，也可通过“nohup ./example_
 - 如需开机自启动，可配置/robot/robot-software/common/config/fork_para_conf_lists.json 进程管理文件(注意结尾逗号)，然后重启运控程序或者重启运控板
  "600003": {"fork_config":{"name": "example_motor_ctrl",  "object_path": "/cyberdog_motor_sdk/",  "log_path": "", "paraValues": ["", "", ""] }}
 ```shell
-# 重启运控程序:
+  # 重启运控程序:
 $ ssh root@192.168.44.233 "ps | grep -E 'example_motor_ctrl' | grep -v grep | awk '{print \$1}' | xargs kill -9" #需先于主进程暂停，避免急停
 $ ssh root@192.168.44.233 "ps | grep -E 'manager|ctrl|imu_online' | grep -v grep | awk '{print \$1}' | xargs kill -9"
 $ ssh root@192.168.44.233 "export LD_LIBRARY_PATH=/robot/robot-software/build;/robot/robot-software/manager /robot/ >> /robot/manager.log 2>&1 &"
 
-# 重启运控板系统:
+  # 重启运控板系统:
 $ ssh root@192.168.44.233 "reboot"
 ```
 
