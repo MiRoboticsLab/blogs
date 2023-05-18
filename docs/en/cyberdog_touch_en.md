@@ -18,7 +18,7 @@ The module architecture diagram is as follows:
 
 <center>
 
- ![avatar](./image/cyberdog_touch/touch architecture diagram.png)
+ ![avatar](./image/cyberdog_touch/touch_architecture_diagram.png)
 
 </center>
 
@@ -27,7 +27,7 @@ The touch module data stream is as follows:
 
 <center>
 
- ![avatar](./image/cyberdog_touch/Touch data stream.png)
+ ![avatar](./image/cyberdog_touch/Touch_data_stream.png)
 
 </center>
 

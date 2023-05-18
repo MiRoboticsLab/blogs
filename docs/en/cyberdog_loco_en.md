@@ -99,7 +99,7 @@ $ ssh root@192.168.44.233  # After logging into the NX application board, login 
 
 If you want to use this motion control interface on your own computer, then please connect to the robot's Ethernet port as suggested in Method 1 and run the following script to configure the routing table of your computer:
 ```shell
-$ git clone git@git.n.xiaomi.com:MiRoboticsLab/loco/loco_hl_example.git # Download the repository of high-level example code
+$ git clone loco_hl_example.git # Download the repository of high-level example code
 $ cd loco_hl_example/scripts
 $ ./auto_lcm_init.sh # script to configure routing table 
 ```
@@ -425,9 +425,7 @@ struct localization_lcmt {
 ```
 ### 2.4 Interface Example
 In this section, three example codes of the high-level interface are introduced for reference, and the code can be deployed on the user's computer or NX application board to run. If deployed on the user's computer, it is necessary to install the LCM communication library according to the steps described in Section 1.2.
-> Example Code repository:
->   - Internal version: https://git.n.xiaomi.com/MiRoboticsLab/loco/loco_hl_example.git
->   - Public version: to be determined
+> Example Code repository: waiting to be public
 
 #### 2.4.1 Basic Motion
 This example code is a Python script, which controls the robot to complete the actions of standing, shaking hands, bowing, raising the head, bowing the head, stepping and rotating, and getting down in sequence.
@@ -582,7 +580,7 @@ class Robot_Ctrl(object):
 if __name__ == '__main__':
     main()
 ```
-> **_NOTE:_** The example code relies on the lcm data type files to run: [robot_control_cmd_lcmt.py](https://xiaomi.f.mioffice.cn/file/boxk4NQw3kddzLAP7d3QjeUfaZ6) & [robot_control_response_lcmt.py](https://xiaomi.f.mioffice.cn/file/boxk48JSexM46F5p1pNzxOOSCWg).
+> **_NOTE:_** The example code relies on the lcm data type files to run: **[robot_control_cmd_lcmt.py** & **robot_control_response_lcmt.py**.
 
 #### 2.4.2 Sequential Motion
 This example code is a Python script. By reading the definition file of the sequential motion, the robot can be controlled to complete the following motions in sequence: stand, adjust the height, lift the right hind leg, step and rotate on the spot, and get down.
@@ -660,7 +658,7 @@ def main():
 if __name__ == '__main__':
     main()
 ```
-> **_NOTE:_** The example code relies on the lcm data type file [robot_control_cmd_lcmt.py](https://xiaomi.f.mioffice.cn/file/boxk4rmlcDnUW9QqQhbRbIgOdkT) and the sequential motion definition file [mini_cyberdog_ctrl.toml](https://xiaomi.f.mioffice.cn/file/boxk4lgoBIOS3rFtAG7AtS6hEod) to run.
+> **_NOTE:_** The example code relies on the lcm data type file **robot_control_cmd_lcmt.py** and the sequential motion definition file **mini_cyberdog_ctrl.toml** to run.
 
 #### 2.4.3 Customized Gait
 This example code is a Python script. By reading the definition files of customized gait and sequential motion, the robot can be controlled to stand, moonwalk and get down in sequence. The _Gait_Params_moonwalk.toml_ file used in the example code contains customized-gait-related parameters introduced in Section 2.2.2, which will be converted first according to the robot_control_cmd_lcmt data structure (Gait_Params_moonwalk_full.toml) before sending.
@@ -781,7 +779,7 @@ def main():
 if __name__ == '__main__':
     main()
 ```
-> **_NOTE:_** The example depends on the lcm data type files [robot_control_cmd_lcmt.py](https://xiaomi.f.mioffice.cn/file/boxk4uIY1yDGZysSgTa1iAPnh5e) and [file_send_lcmt.py](https://xiaomi.f.mioffice.cn/file/boxk4KgfRBFw7mQCUvBfFnhT9Ud), the customized gait files [Gait_Def_moonwalk.toml](https://xiaomi.f.mioffice.cn/file/boxk4SXnntOjWa7oa5TFF9hJD9y) and [Gait_Params_moonwalk.toml](https://xiaomi.f.mioffice.cn/file/boxk477lyvromPIUJk0LXv7P4dg), and the sequential motion file [Usergait_List.toml](https://xiaomi.f.mioffice.cn/file/boxk4Yfx3bJO9I0lxm7LNiv8KNd) to run.
+> **_NOTE:_** The example depends on the lcm data type files **robot_control_cmd_lcmt.py** and **file_send_lcmt.py**, the customized gait files **Gait_Def_moonwalk.toml** and **Gait_Params_moonwalk.toml**, and the sequential motion file **Usergait_List.toml** to run.
 
 
 ## 3. Low-level Interface

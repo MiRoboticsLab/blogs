@@ -18,7 +18,7 @@
 
 <center>
 
- ![avatar](./image/cyberdog_touch/touch architecture diagram.png)
+ ![avatar](./image/cyberdog_touch/touch_architecture_diagram.png)
 
 </center>
 
@@ -27,7 +27,7 @@ touch模块数据流如下：
 
 <center>
 
- ![avatar](./image/cyberdog_touch/Touch data stream.png)
+ ![avatar](./image/cyberdog_touch/Touch_data_stream.png)
 
 </center>
 
