@@ -307,8 +307,9 @@ struct robot_control_response_lcmt {
 |bit11|bit10|bit9|bit8|bit7|bit6|bit5|bit4|bit3|bit2|bit1|bit0
 
 1. **motor**[12]:12个关节电机的警告和错误状态，有问题的电机会自我保护并进入失能状态。针对电机出错，运控内置的保护策略是：不论出现电机警告或错误反馈，都首先进入高阻尼保护模式，机器狗缓慢趴下，3秒后再进入急停无动力模式，在满足清错条件后会自动执行清错操作。在电机错误被清除前，运控无法响应外部指令。
+
 ```markdown
-# ERROR
+    # ERROR
 BIT(0)      电机掉线 
 BIT(1)      电机线圈过温                Coil Thermal-Shutdown（87度）
 BIT(2)      驱动芯片故障                Motor driver chip error
@@ -321,13 +322,13 @@ BIT(9~16)   过载故障 (xxA电流持续xx秒)   Overload error
 BIT(17)     A相电流采样过流             A phase sample overcurrent
 BIT(18~23)  空
 
-# WARNING
+    # WARNING
 BIT(24)     电机线圈温度高           Coil Thermal too high（82度）
 BIT(25)     空
 BIT(26)     空
 BIT(27)     空
 
-# MODE
+    # MODE
 BIT(30~31)  00: REST_MODE复位模式   
             01: CALIBRATION_MODE校准模式  
             02: MOTOR_MODE电机模式  
@@ -858,12 +859,12 @@ root@TinaLinux:~# ./example_motor_ctrl #运行，也可通过“nohup ./example_
 - 如需开机自启动，可配置/robot/robot-software/common/config/fork_para_conf_lists.json 进程管理文件(注意结尾逗号)，然后重启运控程序或者重启运控板
  "600003": {"fork_config":{"name": "example_motor_ctrl",  "object_path": "/cyberdog_motor_sdk/",  "log_path": "", "paraValues": ["", "", ""] }}
 ```shell
-# 重启运控程序:
+  # 重启运控程序:
 $ ssh root@192.168.44.233 "ps | grep -E 'example_motor_ctrl' | grep -v grep | awk '{print \$1}' | xargs kill -9" #需先于主进程暂停，避免急停
 $ ssh root@192.168.44.233 "ps | grep -E 'manager|ctrl|imu_online' | grep -v grep | awk '{print \$1}' | xargs kill -9"
 $ ssh root@192.168.44.233 "export LD_LIBRARY_PATH=/robot/robot-software/build;/robot/robot-software/manager /robot/ >> /robot/manager.log 2>&1 &"
 
-# 重启运控板系统:
+  # 重启运控板系统:
 $ ssh root@192.168.44.233 "reboot"
 ```
 
