@@ -8,8 +8,9 @@ The motion control (MC) module is similar to the human cerebellum, and is respon
 
 The overall communication framework of the robot is shown in the following figure:
 
-
  ![](./image/cyberdog_loco/flow_chart_en.png)
+
+
 
 
 The motion control program is deployed on the M813 motion control board, which provides high-level and low-level interfaces based on LCM communication for developers to call. The developer's user program can be deployed on the robot's built-in NX application board, or on an external developer's PC. In the latter case, the external PC needs to be connected to the robot via Ethernet or USB. For detailed connection instructions, please refer to the section on connecting the robot (section 1.4).
@@ -60,9 +61,9 @@ For more details on usage, please refer to the [official documentation](https://
 
 The robot coordinate system is shown in the figure (a) below, following the right-hand rule, where the x-axis points forward, the y-axis points to the left, and the z-axis points upward. The four legs are named FR (Front-right), FL (Front-left), RR (Rear-right), and RL (Rear-left), and are numbered in this order. Each leg contains three joints: the abad joint, the hip joint, and the knee joint. The definition of the joint zero position is shown in the figure (b) below. The abad joint is horizontal, and the hip joint and knee joint constitute the electrical zero position when the leg is vertically downward (which cannot be actually achieved due to mechanical limitations of the links).
 
-<p align="center">
-  <img width="800" src="./image/cyberdog_loco/coordinate_en.png">
-</p>
+
+![](./image/cyberdog_loco/coordinate_en.png)
+
 
 The positive rotation direction of the joints follows the right-hand rule around the rotation axis. The joint range, maximum speed and torque are shown in the table below.
 
