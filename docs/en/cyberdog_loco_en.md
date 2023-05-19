@@ -8,9 +8,9 @@ The motion control (MC) module is similar to the human cerebellum, and is respon
 
 The overall communication framework of the robot is shown in the following figure:
 
-<p align="center">
-  <img width="600" src="./image/cyberdog_loco/flow_chart_en.png">
-</p>
+
+ ![](./image/cyberdog_loco/flow_chart_en.png)
+
 
 The motion control program is deployed on the M813 motion control board, which provides high-level and low-level interfaces based on LCM communication for developers to call. The developer's user program can be deployed on the robot's built-in NX application board, or on an external developer's PC. In the latter case, the external PC needs to be connected to the robot via Ethernet or USB. For detailed connection instructions, please refer to the section on connecting the robot (section 1.4).
 
