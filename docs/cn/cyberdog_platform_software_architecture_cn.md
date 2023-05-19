@@ -291,5 +291,5 @@ _特别的 __sensor__ 能力_
 
 [MiRoboticsLab/rop (robot operating platform)](https://github.com/MiRoboticsLab/cyberdog_ws)
 
-[Dockerfile使用说明](dockerfile_instructions_cn.md)
+[Dockerfile使用说明](/cn/dockerfile_instructions_cn.md)
 
