@@ -204,7 +204,7 @@ colcon build --merge-install --packages-select $package-name
 ssh mi@192.168.55.1
 ```
 
-**4.对于具体的包来说执行下面命令将编译产物放入到狗上相应位置 ** 
+**4.对于具体的包来说执行下面命令将编译产物放入到狗上相应位置** 
 
 ```Bash
 #本地终端cyberdog_ws目录
