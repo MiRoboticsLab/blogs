@@ -13,7 +13,7 @@ Project L91 -Carpo
 | xpack     | V1.0.1                                                       | Apache License2.0                                            | No                |
 | opencv    | v4.1.1.                                                      | [3-clause BSD license](https://github.com/opencv/opencv/blob/4.4.0/LICENSE). | No                |
 | lcm       | master branch，commit: 91ce7a                                | [ LGPL-2.1 License ](https://github.com/lcm-proj/lcm/blob/master/COPYING) | No                |
-| protobuf  | 3.19.2                                                       | Open source license files are not declared                   | No                |
+| protobuf  | 3.19.2                                                       | https://github.com/protocolbuffers/protobuf/blob/main/LICENSE                    | No                |
 | grpc      | V1.44.0                                                      | Apache License2.0                                            | No                |
 | yaml-cpp  | 0.7.0                                                        | MIT                                                          | No                |
 | ceres     | 1.14.0                                                       | Apache-2.0                                                   | No                |

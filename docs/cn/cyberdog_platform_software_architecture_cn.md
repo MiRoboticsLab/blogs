@@ -86,15 +86,6 @@
 
 1. Bridge只做消息转发，不参与任何具体业务；
 
-##### Dependency
-
-1. Ubuntu： 18.04；
-
-1. ROS2： galactic；
-
-1. Utils：自主开发的工具库，均以动态库形式提供；
-
-1. Thirdparty： [机器人平台第三方库管理](/third_party_library_management_cn.md)
 
 
 ### 模块画像

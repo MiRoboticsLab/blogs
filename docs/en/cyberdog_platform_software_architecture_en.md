@@ -89,12 +89,6 @@
 
 1. Bridge only forwards messages and does not participate in any specific services；
 
-##### Dependency
-
-1. Ubuntu： 18.04；
-1. ROS2： galactic；
-1. Utils：Independently developed tool library, are provided in the form of dynamic library；
-1. Thirdparty： [Thirdparty](Thirdparty)
 
 ### Module portrait
 
