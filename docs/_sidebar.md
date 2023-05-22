@@ -43,3 +43,10 @@
   - [realsense-ros驱动模块](cn/realsense-ros_cn.md)
   - [视觉重定位模块](cn/cyberdog_miloc_cn.md)
   - [视觉里程计模块](cn/cyberdog_mivins_cn.md)
+
+
+- 感知文档
+
+  - [AI算法调度管理及推理模块](cn/cyberdog_vision_cn.md)
+  - [人体及万物目标位置估计模块](cn/cyberdog_tracking_cn.md)
+  - [激光建图定位模块](cn/cyberdog_laserslam_cn.md)
