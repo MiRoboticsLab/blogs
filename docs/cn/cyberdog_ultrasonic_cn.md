@@ -2,7 +2,7 @@
 
 ##  概述
 
-cyberdog_ultrasonic 是与ultrasonic测距传感器关联的传感器插件，此插件为控制传感器提供必要的API接口，并把采集到的ultrasonic数据转换成ros消息格式反馈给客户端。
+cyberdog_ultrasonic 以ros2 plugin形式向客户端提供ultrasonic数据服务，此插件为控制传感器提供必要的API接口，并把采集到的ultrasonic数据转换成ros消息格式通过sensor manager反馈给客户端。cyberdog默认配置1个ultrasonic。
 
 ## 软件设计
 
@@ -13,6 +13,7 @@ cyberdog_ultrasonic 是与ultrasonic测距传感器关联的传感器插件，�
  ![avatar](./image/cyberdog_ultrasonic/cyberdog_ultrasonic.png)
 
 </center>
+<!--
 
 #### 数据流开启
 
@@ -32,7 +33,7 @@ cyberdog_ultrasonic 是与ultrasonic测距传感器关联的传感器插件，�
  ![avatar](./image/cyberdog_ultrasonic/cyberdog_ultrasonic_close_flow.png)
 
 </center>
-
+-->
 
 ## 功能设计
 
@@ -61,6 +62,13 @@ cyberdog_ultrasonic 是与ultrasonic测距传感器关联的传感器插件，�
     - ``ctrl_len``:指令包中，CAN数据帧的数据长度
     - ``ctrl_data``:指令包中，CAN数据帧的数据默认值
 
+## ROS 协议
+- 源码路径：``bridges/protocol/ros``
+- Ros topic：``ultrasonic_payload``
+- 协议介绍：
+  - ``protocol::msg::ultrasonic_payload``：单个Ultrasonic数据格式
+    - 协议路径：``bridges/protocol/ros/msg/ultrasonic_payload.msg``
+
 ## API接口
   - ``Init(bool simulator)``：初始化配置
     - ``simulator = true``:配置为仿真模式
@@ -72,3 +80,6 @@ cyberdog_ultrasonic 是与ultrasonic测距传感器关联的传感器插件，�
   - ``LowPowerOn()``：进入低功耗模式
   - ``LowPowerOff()``：退出低功耗模式
   - ``SetSinglePayloadCallback(std::function<void(std::shared_ptr<protocol::msg::Range> payload)> cb)``：设置消息回调函数
+
+## 调试命令
+  - 获取ultrasonic topic：``ros2 topic list | grep ultrasonic_payload``

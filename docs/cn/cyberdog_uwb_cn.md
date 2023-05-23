@@ -2,7 +2,7 @@
 
 ##  概述
 
-``cyberdog_uwb`` 是与uwb位置传感器关联的传感器插件，此插件为控制传感器提供必要的API接口，并把采集到的uwb数据转换成ros消息格式反馈给客户端。
+``cyberdog_uwb`` 以ros2 plugin形式向客户端提供uwb数据服务，此插件为控制传感器提供必要的API接口，并把采集到的uwb数据转换成ros消息格式通过device manager反馈给客户端。cyberdog默认配置2个或4个UWB。
 
 ## 软件设计
 
@@ -13,7 +13,7 @@
  ![avatar](./image/cyberdog_uwb/cyberdog_uwb.png)
 
 </center>
-
+<!-- 
 #### 数据流开启
 
 
@@ -32,7 +32,7 @@
  ![avatar](./image/cyberdog_uwb/cyberdog_uwb_close_flow.png)
 
 </center>
-
+-->
 
 ## 功能设计
 
@@ -66,8 +66,16 @@
     - ``can_id``:指令包中，CAN数据帧的``CAN_id``
     - ``ctrl_len``:指令包中，CAN数据帧的数据长度
     - ``ctrl_data``:指令包中，CAN数据帧的数据默认值
+## ROS 协议
+- 源码路径：``bridges/protocol/ros``
+- ros topic:``uwb_raw``
+- 协议介绍：
+  - ``protocol::msg::UwbRaw``：单个UWB数据格式
+    - 协议路径：``bridges/protocol/ros/msg/UwbRaw.msg``
+  - ``protocol::msg::UwbArray``：UWB数据数组
+    - 协议路径：``bridges/protocol/ros/msg/``
 
-## API接口
+## API 接口
   - ``bool Init(std::function<void(UwbSignleStatusMsg)>function_callback, bool simulation)``：初始化配置
     - ``simulator = true``:配置为仿真模式
     - ``function_callback``:消息发布回调函数
@@ -77,3 +85,6 @@
   - ``LowPower()``：进入低功耗模式
   - ``SetConnectedState(bool connected)``：设置uwb连接状态
   - ``void Play(const std::shared_ptr<protocol::srv::GetUWBMacSessionID::Request> info_request,std::shared_ptr<protocol::srv::GetUWBMacSessionID::Response> info_response)``：ros2 service打开uwb接口
+
+## 调试命令
+  - 获取uwb topic：``ros2 topic list | grep uwb_raw``
