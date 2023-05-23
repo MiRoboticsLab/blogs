@@ -68,9 +68,9 @@
 - Ros topic:``uwb_raw``
 - Agreement introduction:
   - ``Protocol:: msg:: UwbRaw``: Single UWB data format
-  - Protocol path: ``bridges/protocol/ros/msg/UwbRaw.msg``
+    - Protocol path: ``bridges/protocol/ros/msg/UwbRaw.msg``
   - ``Protocol:: msg:: UwbArray``: UWB data array
-  - Protocol path: ``bridges/protocol/ros/msg/``
+    - Protocol path: ``bridges/protocol/ros/msg/``
 ##  API interface
 - ``bool Init(std::function<void(UwbSignleStatusMsg)>function_callback, bool simulation)``：initialize configuration
   - ``simulator = true``:configure to emulate mode

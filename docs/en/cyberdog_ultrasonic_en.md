@@ -2,7 +2,7 @@
 
 ##  Overview
 
-``cyberdog_ultrasonic`` is a sensor plug-in associated with the ultrasonic ranging sensor. This plug-in provides the necessary API interface for controlling the sensor, and converts the collected ultrasonic data into a ros message format and feeds it back to the client side..
+``cyberdog_ultrasonic`` cyberdog_ultrasonic provide ultrasonic data services to the client side in the form of ros2 plugin. This plug-in provides the necessary API interface for the control sensor, and converts the collected ultrasonic data into a ros message format and feeds it back to the client side through the sensor manager. Cyberdog is configured with 1 ultrasonic by default.
 
 ## Software Design
 
@@ -63,6 +63,13 @@
     - ``ctrl_len``: the data length of the instruction data frame in the CAN package
     - ``ctrl_data``: data default value of instruction data frame in CAN package
 
+## ROS protocol
+- Source path: "bridges/protocol/ros"
+- Ros topic：``ultrasonic_payload``
+- Agreement introduction:
+  - ``Protocol:: msg:: ultrasonic_payload``: Single Ultrasonic data format
+    - Protocol path：``bridges/protocol/ros/msg/ultrasonic_payload.msg``
+
 ##  API interface
 - ``Init (bool simulator)``: initialize configuration
   - ``Simulator = true``: configure to emulate mode
@@ -74,3 +81,6 @@
 - ``LowPowerOn ()``: enter low power mode
 - ``LowPowerOff ()``: exit low power mode
 - ``SetSinglePayloadCallback(std::function<void(std::shared_ptr<protocol::msg::Range> payload)> cb)``：set callback function for message.
+
+## Debug command
+  - Get ultrasonic topic：``ros2 topic list | grep ultrasonic_payload``
