@@ -2,7 +2,7 @@
 
 ##  Overview
 
-``cyberdog_uwb`` is a sensor plug-in associated with the uwb position sensor. This plug-in provides the necessary API interface for controlling the sensor, and converts the collected uwb data into a ros message format and feeds it back to the client side.
+``cyberdog_uwb`` Provide uwb data service to the client side in the form of ros2 plugin. This plug-in provides the necessary API interface for the control sensor, and converts the collected uwb data into ros message format and feeds it back to the client side through the device manager. Cyberdog is configured with 2 or 4 UWBs by default.
 
 ## Software Design
 
@@ -13,7 +13,7 @@
  ![avatar](./image/cyberdog_uwb/cyberdog_uwb.png)
 
 </center>
-
+<!-- 
 #### Data stream on
 
 <center>
@@ -29,7 +29,7 @@
  ![avatar](./image/cyberdog_uwb/cyberdog_uwb_close_flow.png)
 
 </center>
-
+-->
 ## Functional design
 
 - Flexible configuration of sensor number, message source, command id , etc. through configuration file
@@ -63,7 +63,14 @@
     - ``can_id``: instruction package, CAN data frame ``CAN ID``
     - ``ctrl_len``: the data length of the instruction data frame in the CAN package
     - ``ctrl_data``: data default value of instruction data frame in CAN package
-
+## ROS protocol
+- Source path: ``bridges/protocol/ros``
+- Ros topic:``uwb_raw``
+- Agreement introduction:
+  - ``Protocol:: msg:: UwbRaw``: Single UWB data format
+  - Protocol path: ``bridges/protocol/ros/msg/UwbRaw.msg``
+  - ``Protocol:: msg:: UwbArray``: UWB data array
+  - Protocol path: ``bridges/protocol/ros/msg/``
 ##  API interface
 - ``bool Init(std::function<void(UwbSignleStatusMsg)>function_callback, bool simulation)``：initialize configuration
   - ``simulator = true``:configure to emulate mode
@@ -74,3 +81,5 @@
 - ``LowPower ()``: enter low power mode
 - ``SetConnectedState(bool connected)``：set UWB device connection statu
 - ``void Play(const std::shared_ptr<protocol::srv::GetUWBMacSessionID::Request> info_request,std::shared_ptr<protocol::srv::GetUWBMacSessionID::Response> info_response)``：ros2 service,using for open uwb.
+## Debug command
+  - Get uwb topic：``ros2 topic list | grep uwb_raw``
