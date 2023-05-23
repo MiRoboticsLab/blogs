@@ -2,7 +2,7 @@
 
 ##  Overview
 
-``cyberdog_tof`` is a sensor plug-in associated with the tof ranging sensor. This plug-in provides the necessary API interface for controlling the sensor, and converts the collected tof data into a ros message format and feeds it back to the client side.
+``cyberdog_tof`` provides tof data service to the client side in the form of ros2 plugin. This plug-in provides the necessary API interface for the control sensor, and converts the collected tof data into ros message format and publishes it through sensor_manager.
 
 ## Software Design
 
@@ -13,7 +13,7 @@
  ![avatar](./image/cyberdog_tof/cyberdog_tof.png)
 
 </center>
-
+<!--
 #### Data stream on
 
 <center>
@@ -29,7 +29,7 @@
  ![avatar](./image/cyberdog_tof/cyberdog_tof_close_flow.png)
 
 </center>
-
+-->
 ## Functional design
 
 - Flexible configuration of sensor number, message source, command id , etc. through configuration file
@@ -60,6 +60,17 @@
     - ``ctrl_len``: the data length of the instruction data frame in the CAN package
     - ``ctrl_data``: data default value of instruction data frame in CAN package
 
+## ROS protocol
+- Source path: "bridges/protocol/ros"
+- Ros topic：``head_tof_payload``、``rear_tof_payload``
+- Agreement introduction:
+  - ``Protocol:: msg:: SingleTofPayload``: Single TOF data format
+    - Protocol path: ``bridges/protocol/ros/msg/SingleTofPayload.msg``
+  - ``Protocol:: msg:: HeadTofPayload``: Header TOF data format
+    - Protocol path: ``bridges/protocol/ros/msg/HeadTofPayload.msg``
+  - ``Protocol:: msg:: RearTofPayload``: Tail TOF data format
+    - Protocol path: ``bridges/protocol/ros/msg/RearTofPayload.msg``
+
 ##  API interface
 - ``Init (bool simulator)``: initialize configuration
   - ``Simulator = true``: configure to emulate mode
@@ -72,3 +83,6 @@
 - ``LowPowerOff ()``: exit low power mode
 - ``SetSinglePayloadCallback(std::function<void(std::shared_ptr<protocol::msg::SingleTofPayload> payload)> cb)``：set callback function for message.
 
+## Debug command
+  - Get Head of Tof topic：``ros2 topic list | grep head_tof_payload``
+  - Get rear of Tof topic：``ros2 topic list | grep rear_tof_payload``
