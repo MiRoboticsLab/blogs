@@ -48,5 +48,5 @@
   - [tracking](cn/cyberdog_tracking_cn.md)
   - [laserslam](cn/cyberdog_laserslam_cn.md)
 
- — Developer Manual
+- Developer Manual
   - [flash](cn/cyberdog_flash.md)
