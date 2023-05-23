@@ -15,7 +15,7 @@
 
 </center>
 
-
+<!--
 #### Data stream on
 
 
@@ -34,7 +34,7 @@
  ![avatar](./image/cyberdog_ultrasonic/cyberdog_ultrasonic_close_flow.png)
 
 </center>
-
+-->
 
 ## Functional design
 
@@ -67,8 +67,8 @@
 - Source path: "bridges/protocol/ros"
 - Ros topic：``ultrasonic_payload``
 - Agreement introduction:
-  - ``Protocol:: msg:: ultrasonic_payload``: Single Ultrasonic data format
-    - Protocol path：``bridges/protocol/ros/msg/ultrasonic_payload.msg``
+  - ``sensor_msgs::msg::Range``: Single Ultrasonic data format
+    - Protocol path：``bridges/protocol/ros/msg/UltrasonicPayload.msg``
 
 ##  API interface
 - ``Init (bool simulator)``: initialize configuration
