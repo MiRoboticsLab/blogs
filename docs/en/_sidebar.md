@@ -43,10 +43,10 @@
   - [miloc](/en/cyberdog_miloc_en.md)
   - [mivins](/en/cyberdog_mivins_en.md)
   
- - Perception Document
+- Perception Document
   - [version](cn/cyberdog_vision_cn.md)
   - [tracking](cn/cyberdog_tracking_cn.md)
   - [laserslam](cn/cyberdog_laserslam_cn.md)
 
-— Developer Manual
+ — Developer Manual
   - [flash](cn/cyberdog_flash.md)
