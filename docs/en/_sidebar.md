@@ -31,11 +31,10 @@
   - [parameter](en/cyberdog_parameter_en.md)
   - [Unified Error Code](en/cyberdog_system_en.md)
   - [common](en/cyberdog_common_en.md)
-  - 
+  
   
 - Operations Control Document
-  
-- [loco](/en/cyberdog_loco_en.md)
+  - [loco](/en/cyberdog_loco_en.md)
   
 - SLAM Document
   - [camera](/en/cyberdog_camera_en.md)
@@ -44,8 +43,10 @@
   - [miloc](/en/cyberdog_miloc_en.md)
   - [mivins](/en/cyberdog_mivins_en.md)
   
- - Perception Document
-
+- Perception Document
   - [version](cn/cyberdog_vision_cn.md)
   - [tracking](cn/cyberdog_tracking_cn.md)
   - [laserslam](cn/cyberdog_laserslam_cn.md)
+
+- Developer Manual
+  - [flash](cn/cyberdog_flash.md)
