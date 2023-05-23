@@ -1,44 +1,12 @@
 # <center>cyberdog_vp design document</center>
 
-## <font color=Blue size=4> Directory </font>
-* [1. Revise](#1-revise)
-* [2. Overview](#2-overview)
-* [3. Design](#3-design)
-    * [3.1. Operation process design](#31-operation-process-design)
-    * [3.2. Technology architecture](#32-technology-architecture)
-    * [3.3. Interactive timing](#33-interactive-timing)
-    * [3.4. File structure](#34-file-structure)
-    * [3.5. Modular architecture](#35-modular-architecture)
-        * [3.5.1. Frontend module architecture](#351-frontend-module-architecture)
-        * [3.5.2. Backend module architecture](#352-backend-module-architecture)
-        * [3.5.3. Robot side engine module architecture](#353-robot-side-engine-module-architecture)
-            * [3.5.3.1. Robot side module operation and state flow design](#3531-robot-side-module-operation-and-state-flow-design)
-            * [3.5.3.2. Robot side task operation and state flow design](#3532-robot-side-task-operation-and-state-flow-design)
-            * [3.5.3.3. Robot side design of operating constraints in each mode](#3533-robot-side-design-of-operating-constraints-in-each-mode)
-        * [3.5.4. Robot side iron egg capability set module architecture](#354-robot-side-iron-egg-capability-set-module-architecture)
-        * [3.5.5. Robot side terminal interactive programming and debugging module architecture](#355-robot-side-terminal-interactive-programming-and-debugging-module-architecture)
-* [4. Appendix](#4-appendix)
-    * [4.1. Description of custom actions](#41-description-of-custom-actions)
----
-## 1. Revise
-
-<center>
-
-Item|Software Version|Protocol Version|Revision Date|Reviser|Remarks
-:--:|:--|:--|:--:|:--:|:--:
-Cyberdog abilityset SDK|V1.1.0.0|V1.0.0.0|2023-02-06|ShangZihan|none
-Visual programming engine|V1.1.0.0|V1.0.0.0|2023-02-06|ShangZihan|none
-Visual programming terminal|V1.1.0.0|V1.0.0.0|2023-02-06|ShangZihan|none
-
-</center>
-
-## 2. Overview
+## 1. Overview
 Visual programming, that is, visual programming design: Based on the principle of "what you see is what you get" in programming, we strive to realize the visualization of programming work, that is, the results can be seen at any time, and the adjustment of the program and the results are synchronized. Visual programming is compared with traditional programming methods. The "visual" here refers to the interface design work that can be completed only through intuitive operation methods without programming. Here, programming is performed through mobile devices, robots Responsible for executing procedures.
 
-## 3. Design
-### 3.1. Operation process design
+## 2. Design
+### 2.1. Operation process design
 Operate through the graphical programming front-end interface. For details, please refer to the product help manual.
-### 3.2 Technology architecture
+### 2.2 Technology architecture
 
 <center>
 
@@ -53,17 +21,7 @@ As shown in the figure above, visual programming consists of three major modules
 
 The front end and the robot end communicate through grpc; the robot end and the back end communicate through http or mqtt.
 
-### 3.3 Interactive timing
-
-<center>
-
-![](./image/cyberdog_vp/cyberdog_vp_2.svg)
-
-</center>
-
-As shown in the figure above, it is the simplest sequence diagram illustrating the interaction between the three major modules of visual programming.
-
-### 3.4 File structure
+### 2.3 File structure
 
 <center>
 
@@ -85,7 +43,7 @@ As shown in the figure above, it is the file structure involved in visual progra
         1. Timed single operation;
         2. Timing cycle execution.
 
-### 3.5 Modular architecture
+### 2.4 Modular architecture
 
 <center>
 
@@ -99,7 +57,7 @@ As shown in the figure above, it is the module architecture involved in visual p
 3. Robot side: It is composed of visual programming engine, robot capability set and terminal interactive programming and debugging module.
 
 Interactive programming based on I-Python, cross-compilation of C++ and python and interface mapping from C++ to python based on pybind11.
-#### 3.5.1 Frontend module architecture
+#### 2.4.1 Frontend module architecture
 
 <center>
 
@@ -119,7 +77,7 @@ As shown in the figure above, the visual programming front-end module architectu
     * Professional category: professional sports interface;
 3. Programmatic dependency category:
     * Custom module class.
-#### 3.5.2 Backend module architecture
+#### 2.4.2 Backend module architecture
 
 <center>
 
@@ -136,7 +94,7 @@ As shown in the figure above, the visual programming back-end module architectur
     * share modules or tasks;
     * Favorite modules or tasks.
 
-#### 3.5.3 Robot side engine module architecture
+#### 2.4.3 Robot side engine module architecture
 
 <center>
 
@@ -152,7 +110,7 @@ As shown in the figure above, the visual programming engine module architecture:
     * Control task execution.
 2. For task operation and module operation, see task and module status flow.
 
-#### 3.5.3.1 Robot side module operation and state flow design
+#### 2.4.3.1 Robot side module operation and state flow design
 
 The circulation relationship of the three module states under the three module operations can be seen at a glance. The three module operations and the three module states are described as follows:
 * Three kinds of module operations
@@ -164,7 +122,7 @@ The circulation relationship of the three module states under the three module o
     2. Error state: This state means that the current module does not conform to the grammatical rules, that is to say, the current module cannot be run and can only be edited again.
     3. Normal state: This state means that the current module conforms to the grammatical rules, that is to say, the current module can be called.
 
-#### 3.5.3.2 Robot side task operation and state flow design
+#### 2.4.3.2 Robot side task operation and state flow design
 
 The flow relationship of the seven task states under the eight task operations can be seen clearly. The eight task operations and the seven task states are explained as follows:
 * Eight task operations
@@ -187,7 +145,7 @@ The flow relationship of the seven task states under the eight task operations c
 * Note: The current task status is based on the programming logic within the task, not the task execution constraints (considered by the caller):
 * When the programming logic of a certain task is approved, the state of the task is waiting to run (wait_run). If the execution constraint of the task is a scheduled single execution, the caller needs to judge the constraint time of the current task according to the timing constraint Whether it has expired, and then start the task when it is not expired. Of course, you can also ignore it and directly send the opening request, but it will be regarded as an illegal request, the operation will fail, and it is not friendly to the user's operation experience.
 
-#### 3.5.3.3 Robot side design of operating constraints in each mode
+#### 2.4.3.3 Robot side design of operating constraints in each mode
 
 In ten robot modes, users can have a panoramic view of eight operations on tasks or modules, one operation on AI capabilities by users, and two operation constraints triggered by tasks themselves. The constraint indicators in each mode are mainly Consider the following:
 1. Under the three modes of Uninitialized, SetUp, and TearDown, all functional modules of the robot are in a state of not working properly, so all operations are restricted;
@@ -216,7 +174,7 @@ In ten robot modes, users can have a panoramic view of eight operations on tasks
         🔺Double tap the dog head to exit low power consumption;</blockcode></pre>
 </details>
 
-#### 3.5.4 Robot side iron egg capability set module architecture
+#### 2.4.4 Robot side iron egg capability set module architecture
 
 <center>
 
@@ -229,7 +187,7 @@ As shown in the figure above, the visual programming iron egg capability set mod
 * 13 functions: sports, navigation, mission control, log record, network status, training words, gesture recognition, personnel information, motion recognition (based on skeleton points), face recognition, voiceprint recognition, skin control and follow function . Among them, the skin control and following functions are reserved, waiting to be adapted to business scenarios.
 * 2 kinds of API: Realize the dynamic library based on the same robot capability set, and open C++ API and Python API at the same time.
 
-#### 3.5.5 Robot side terminal interactive programming and debugging module architecture
+#### 2.4.5 Robot side terminal interactive programming and debugging module architecture
 
 <center>
 
@@ -242,8 +200,8 @@ As shown in the figure above, the visual programming iron egg capability set mod
     1. Interactive programming under the terminal: terminal programming based on Python API, used for advanced players, and also a debugging tool for Python API without APP in the development process.
     2. Debugging tools under the terminal: mainly debug the graphical programming engine and the robot capability set C++ API, and provide the API help document function under the terminal.
 
-## 4 Appendix
-### 4.1 Description of custom actions
+## 3 Appendix
+### 3.1 Description of custom actions
 
 MIT open source code Cheetah Software, including other open source software, defines the gait of quadruped robots for periodic gait, and completely determines a gait by defining the period, duty cycle and phase difference. Gait can be understood as the relationship between the support and swing phase of each leg of the robot over time. Periodic gait means that the support phase and swing phase of each leg change periodically. For example, a quadruped robot’s diagonal gait is a typical cycle gait. The defined gait cooperates with the corresponding parameters, including the trajectory of the trunk, the position of the foothold, the height of the foot, etc., to form different actions. Simply put, it is "gait definition + gait parameters = action".
 
