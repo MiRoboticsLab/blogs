@@ -48,7 +48,7 @@
   - [人体及万物目标位置估计模块](cn/cyberdog_tracking_cn.md)
   - [激光建图定位模块](cn/cyberdog_laserslam_cn.md)
 
- - 开发者手册
+- 开发者手册
   - [刷机文档](cn/cyberdog_flash.md)
  
  
