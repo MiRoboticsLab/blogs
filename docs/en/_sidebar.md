@@ -35,7 +35,7 @@
   
 - Operations Control Document
   
-- [loco](/en/cyberdog_loco_en.md)
+  - [loco](/en/cyberdog_loco_en.md)
   
 - SLAM Document
   - [camera](/en/cyberdog_camera_en.md)
