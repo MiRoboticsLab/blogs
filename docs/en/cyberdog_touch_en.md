@@ -1,11 +1,4 @@
 # Touch Design document
-# Table of contents
-## One. Overview
-## Two. Design
-- 2.1 Function Division
-- 2.2 Module Architecture
-- 2.3 Interface Design
-- 2.4 Module design
 # 1. Overview
 The following aims to explain the robot dog touch interaction logic and function mapping.
 # 2. Design
