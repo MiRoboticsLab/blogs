@@ -30,26 +30,63 @@
 
 </center>
 
+### 2.3 ROS 协议
+- 源码路径：``bridges/protocol/ros``
+- 人脸录入协议文件
+  - ``protocol/srv/FaceEntry.srv``：人脸录入Service协议。
+  - ``cyberdog_face_entry_srv``：人脸录入Service名称。
+  - ``protocol/msg/FaceEntryResult``：人脸录入Topic协议。
+  - ``face_entry_msg``：人脸录入Topic名称。
+- 人脸识别协议文件
+  - ``protocol/msg/FaceRecognitionResult``：人脸识别Service协议。
+  - ``cyberdog_face_recognition_srv``：人脸识别Service名称。
+  - ``protocol/msg/FaceRecognitionResult``：人脸识别Topic协议。
+  - ``face_rec_msg``：人脸识别Topic名称。
+
+
 ## 3. 人脸录入功能
 ``cyberdog_face``通过service接受到人脸录入请求，返回应答请求并向底层发送人脸录入算法请求，通过监听底层发送的topic，将人脸录入的结果通过topic向上层发送。
 
 ### 3.1 添加人脸
 ``cyberdog_face``向底层人脸数据库添加人脸。
 
+```
+ros2 service call /`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`/cyberdog_face_entry_srv protocol/srv/FaceEntry "{command: 0,username: XiaoMing,oriname: ,ishost: false}"
+```
+
 ### 3.2 取消添加人脸
 ``cyberdog_face``正在人脸录入中，向底层发送取消添加录入人脸。
+
+```
+ros2 service call /`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`/cyberdog_face_entry_srv protocol/srv/FaceEntry "{command: 1,username: XiaoMing,oriname: ,ishost: false}"
+```
 
 ### 3.3 确认录入人脸
 ``cyberdog_face``在添加录入人脸成功后，再次发送确认添加录入人脸，成功则底层数据库添加人脸成功。
 
+```
+ros2 service call /`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`/cyberdog_face_entry_srv protocol/srv/FaceEntry "{command: 2,username: XiaoMing,oriname: ,ishost: false}"
+```
 ### 3.4 更新录入人脸
 ``cyberdog_face``更新底层人脸数据库中用户名字。
+
+```
+ros2 service call /`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`/cyberdog_face_entry_srv protocol/srv/FaceEntry "{command: 3,username: XiaoHong,oriname: XiaoMing,ishost: false}"
+```
 
 ### 3.5 删除人脸信息
 ``cyberdog_face``接受到删除人脸的id请求，向底层数据库中删除指定id的人脸，成功返回true,失败返回false。
 
+```
+ros2 service call /`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`/cyberdog_face_entry_srv protocol/srv/FaceEntry "{command: 4,username: XiaoHong,oriname: ,ishost: false}"
+```
+
 ### 3.6 获取所有人脸信息
 ``cyberdog_face``获取底层数据库中所有人脸的信息。
+
+```
+ros2 service call /`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`/cyberdog_face_entry_srv protocol/srv/FaceEntry "{command: 5,username: ,oriname: ,ishost: false}"
+```
 
 ## 4. 人脸识别功能
 ``cyberdog_face``通过service接受到人脸识别请求，返回应答请求并向底层发送人脸识别算法请求，通过监听底层发送的topic，将人脸识别的结果通过topic向上层发送。
@@ -57,8 +94,26 @@
 ### 4.1 识别人脸数据库中当前人脸是否存在
 ``cyberdog_face``判断当前识别的人脸是否在底层数据库中存在；如存在将识别到人脸的昵称发送出去。
 
+```
+ros2 service call /`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`/cyberdog_face_recognition_srv protocol/srv/FaceRec "{command: 0,username: XiaoMing,id: 11111111,timeout: 30}"
+```
+
 ### 4.2 识别人脸数据库中指定username的人脸是否存在
 ``cyberdog_face``判断识别指定昵称的人脸是否存在在与之昵称对应的底层数据库中；识别成功发送该用户昵称；否则，未识别到人脸。
 
+```
+ros2 service call /`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`/cyberdog_face_recognition_srv protocol/srv/FaceRec "{command: 1,username: XiaoMing,id: 11111111,timeout: 30}"
+```
+
 ### 4.3 取消识别用户的人脸
 ``cyberdog_face``正在进行人脸识别中，发送request取消当前的人脸识别。
+
+```
+ros2 service call /`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`/cyberdog_face_entry_srv protocol/srv/FaceRec "{command: 2,username: XiaoMing,id: 11111111,timeout: 30}"
+```
+
+## 5. 运行cyberdog_face模块
+
+```
+ros2 run cyberdog_face cyberdog_face --ros-args -r __ns:=/`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`
+```

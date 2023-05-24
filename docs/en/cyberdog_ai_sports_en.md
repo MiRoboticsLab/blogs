@@ -32,13 +32,41 @@
 
 ## 3. Sport counts function
 
-- ``cyberdog_ai_sports`` counts the number of times the target movement occurs or lasts for a certain period of time, including **push-ups**, *jump jack**, **deep squats**, **high knees**, **sit-ups**, **plank**.
+ ``cyberdog_ai_sports`` counts the number of times the target movement occurs or lasts for a certain period of time, including **push-ups**, *jump jack**, **deep squats**, **high knees**, **sit-ups**, **plank**.
+
+ ### 3.1 ROS protocol
+
+- Source code path: ``bridges/protocol/ros``.
+- Sport counts protocol file
+  - ``protocol/srv/SportManager.srv``：The service protocol of sport counts allows the client to send motion counting requests.
+  - ``sport_manager``: Sport Counts Service Name.
+  - ``protocol/msg/SportCountsResult.msg``: The  topic protocol of Sport Counts allows the client to receive motion count results.
+  - ``sport_counts_msg``: Sport Counts Topic Name。
+
+ ### 3.2 Configure file
 -  ``cyberdog_ai_sports`` performs data fusion and filtering of  Keypoint angles for each frame processed, where the path to the configuration parameters: ``/opt/ros2/cyberdog/share/params/toml_config/interaction/sports.toml``.
    - ``DataFusionNumber``: The size of the data fusion.
    - ``DataFilterNumber``: the size of the data filter.
    - ``ThreMinAngle, ThreMaxAngle, ThreMidAngle1, etc.``: Threshold angle of the count judgment.
 
-## 4. API interface
+
+## 4. Running ROS2 program for cyberdog_ai_sports
+
+- Running ROS2 program for cyberdog_ai_sports
+```
+ros2 run cyberdog_ai_sports cyberdog_ai_sports --ros-args -r __ns:=/`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`
+```
+
+- Request 10 squat counts within 30 seconds
+```
+ros2 service call /`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`/sport_manager protocol/srv/SportManager "{sport_type: 1,command: true,counts: 10,timeout: 30}"
+```
+- Turn off sport counting algorithm
+```
+ros2 service call /`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`/sport_manager protocol/srv/SportManager "{sport_type: ,command: false,counts: ,timeout: }"
+```
+
+## 5. API interface
 
   - ``Get_Angle_Point(std::vector<XMPoint> & keypoint, const std::string & pos)``: Get the three keypoints of the joint angle from the 17 keypoints.
   - ``Angle_Between_Points(XMPoint p0, XMPoint p1, XMPoint p2)``: Get the angle between the three points.
