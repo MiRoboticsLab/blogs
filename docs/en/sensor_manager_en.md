@@ -20,12 +20,12 @@
 - [ROS plugin](https://github.com/ros2/ros2_documentation/blob/galactic/source/Tutorials/Beginner-Client-Libraries/Pluginlib.rst)
 
 - ``sensor_manager`` Use ``pluginlib::ClassLoader``to load ``cyberdog_tof`` and other modules.
+
 ```
 //Refer to the ros sample for the loading process
 pluginlib::ClassLoader<polygon_base::RegularPolygon> poly_loader("polygon_base", "polygon_base::RegularPolygon");
 
 std::shared_ptr<polygon_base::RegularPolygon> triangle = poly_loader.createSharedInstance("polygon_plugins::Triangle");
-    
 ```
 
 ### Finite-state machine management

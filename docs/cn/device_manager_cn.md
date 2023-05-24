@@ -19,12 +19,12 @@
 - [ROS plugin](https://github.com/ros2/ros2_documentation/blob/galactic/source/Tutorials/Beginner-Client-Libraries/Pluginlib.rst)
 
 - ``device_manager``使用 ``pluginlib::ClassLoader``加载``cyberdog_uwb``等各模块。
+
 ```
   // 加载过程参考ros样例
 pluginlib::ClassLoader<polygon_base::RegularPolygon> poly_loader("polygon_base", "polygon_base::RegularPolygon");
 
 std::shared_ptr<polygon_base::RegularPolygon> triangle = poly_loader.createSharedInstance("polygon_plugins::Triangle");
-    
 ```
 
 ### 状态机管理

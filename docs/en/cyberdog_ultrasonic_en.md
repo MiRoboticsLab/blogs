@@ -70,7 +70,7 @@ Data stream closed
   - ``sensor_msgs::msg::Range``: Single Ultrasonic data format
     - Protocol path：``bridges/protocol/ros/msg/UltrasonicPayload.msg``
 
-##  API interface
+## API interface
 - ``Init (bool simulator)``: initialize configuration
   - ``Simulator = true``: configure to emulate mode
 - ``Open () ``: turn on the sensor

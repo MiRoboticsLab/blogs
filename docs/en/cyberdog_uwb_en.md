@@ -65,7 +65,9 @@
     - ``can_id``: instruction package, CAN data frame ``CAN ID``
     - ``ctrl_len``: the data length of the instruction data frame in the CAN package
     - ``ctrl_data``: data default value of instruction data frame in CAN package
+
 ## ROS protocol
+
 - Source path: ``bridges/protocol/ros``
 - Ros topic:``uwb_raw``
 - Agreement introduction:
@@ -73,7 +75,9 @@
     - Protocol path: ``bridges/protocol/ros/msg/UwbRaw.msg``
   - ``Protocol:: msg:: UwbArray``: UWB data array
     - Protocol path: ``bridges/protocol/ros/msg/``
-##  API interface
+
+## API interface
+
 - ``bool Init(std::function<void(UwbSignleStatusMsg)>function_callback, bool simulation)``：initialize configuration
   - ``simulator = true``:configure to emulate mode
   - ``function_callback``:set callback function for message.
@@ -83,5 +87,7 @@
 - ``LowPower ()``: enter low power mode
 - ``SetConnectedState(bool connected)``：set UWB device connection statu
 - ``void Play(const std::shared_ptr<protocol::srv::GetUWBMacSessionID::Request> info_request,std::shared_ptr<protocol::srv::GetUWBMacSessionID::Response> info_response)``：ros2 service,using for open uwb.
+
 ## Debug command
+
   - Get uwb topic：``ros2 topic list | grep uwb_raw``
