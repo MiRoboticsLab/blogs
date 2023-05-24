@@ -2,7 +2,7 @@
 
 ##  概述
 
-``cyberdog_tof`` 是与tof测距传感器关联的传感器插件，此插件为控制传感器提供必要的API接口，并把采集到的tof数据转换成ros消息格式反馈给客户端。
+``cyberdog_tof`` 以ros2 plugin形式向客户端提供tof数据服务，此插件为控制传感器提供必要的API接口，并把采集到的tof数据转换成ros消息格式通过sensor_manager向外发布。
 
 ## 软件设计
 
@@ -13,7 +13,7 @@
  ![avatar](./image/cyberdog_tof/cyberdog_tof.png)
 
 </center>
-
+<!--
 #### 数据流开启
 
 <center>
@@ -29,7 +29,7 @@
  ![avatar](./image/cyberdog_tof/cyberdog_tof_close_flow.png)
 
 </center>
-
+-->
 ## 功能设计
 
  - 通过配置文件可灵活配置传感器个数、消息源、指令id等
@@ -60,6 +60,17 @@
     - ``ctrl_len``:指令包中，CAN数据帧的数据长度
     - ``ctrl_data``:指令包中，CAN数据帧的数据默认值
 
+## ROS 协议
+- 源码路径：``bridges/protocol/ros``
+- Ros topic：``head_tof_payload``、``rear_tof_payload``
+- 协议介绍：
+  - ``protocol::msg::SingleTofPayload``:单个TOF数据格式
+    - 协议路径：``bridges/protocol/ros/msg/SingleTofPayload.msg``
+  - ``protocol::msg::HeadTofPayload``：头部TOF数据格式
+    - 协议路径：``bridges/protocol/ros/msg/HeadTofPayload.msg``
+  - ``protocol::msg::RearTofPayload``：尾部TOF数据格式
+    - 协议路径：``bridges/protocol/ros/msg/RearTofPayload.msg``  
+
 ## API接口
   - ``Init(bool simulator)``：初始化配置
     - ``simulator = true``:配置为仿真模式
@@ -71,3 +82,7 @@
   - ``LowPowerOn()``：进入低功耗模式
   - ``LowPowerOff()``：退出低功耗模式
   - ``SetSinglePayloadCallback(std::function<void(std::shared_ptr<protocol::msg::SingleTofPayload> payload)> cb)``：设置消息回调函数
+
+## 调试命令
+  - 获取头部Tof topic：``ros2 topic list | grep head_tof_payload``
+  - 获取尾部Tof topic：``ros2 topic list | grep rear_tof_payload``

@@ -66,8 +66,8 @@ cyberdog_ultrasonic 以ros2 plugin形式向客户端提供ultrasonic数据服务
 - 源码路径：``bridges/protocol/ros``
 - Ros topic：``ultrasonic_payload``
 - 协议介绍：
-  - ``protocol::msg::ultrasonic_payload``：单个Ultrasonic数据格式
-    - 协议路径：``bridges/protocol/ros/msg/ultrasonic_payload.msg``
+  - ``sensor_msgs::msg::Range``：单个Ultrasonic数据格式
+    - 协议路径：``bridges/protocol/ros/msg/UltrasonicPayload.msg``
 
 ## API接口
   - ``Init(bool simulator)``：初始化配置
