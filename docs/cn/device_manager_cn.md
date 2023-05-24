@@ -48,12 +48,12 @@ std::shared_ptr<polygon_base::RegularPolygon> triangle = poly_loader.createShare
 
 ### 模块插件
 
-[蓝牙模块](/cn/cyberdog_bluetooth_cn.md)
-[bms模块](/cn/cyberdog_bms_cn.md)
-[led模块](/cn/cyberdog_led_cn.md)
-[touch模块](/cn/cyberdog_touch_cn.md)
-[uwb模块](/cn/cyberdog_uwb_cn.md)
-[wifi模块](/cn/cyberdog_wifi_cn.md)
+- [蓝牙模块](/cn/cyberdog_bluetooth_cn.md)
+- [bms模块](/cn/cyberdog_bms_cn.md)
+- [led模块](/cn/cyberdog_led_cn.md)
+- [touch模块](/cn/cyberdog_touch_cn.md)
+- [uwb模块](/cn/cyberdog_uwb_cn.md)
+- [wifi模块](/cn/cyberdog_wifi_cn.md)
 
 ## 调试命令
 

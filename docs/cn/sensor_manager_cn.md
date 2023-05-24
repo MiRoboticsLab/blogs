@@ -46,15 +46,19 @@ std::shared_ptr<polygon_base::RegularPolygon> triangle = poly_loader.createShare
   - ``protocol::srv::SensorOperation``：传感器控制服务
 
 ### 模块插件
-[GPS模块](/cn/cyberdog_gps_cn.md)
-[TOF模块](/cn/cyberdog_tof_cn.md)
-[雷达模块](/cn/cyberdog_lidar_cn.md)
-[超声模块](/cn/cyberdog_ultrasonic_cn.md)
+- [GPS模块](/cn/cyberdog_gps_cn.md)
+- [TOF模块](/cn/cyberdog_tof_cn.md)
+- [雷达模块](/cn/cyberdog_lidar_cn.md)
+- [超声模块](/cn/cyberdog_ultrasonic_cn.md)
 
 ## 调试命令
-  - 获取sensor_manager状态机服务：``ros2 topic list | grep sensor_manager``
+  - 获取sensor_manager状态机服务：
+  ```
+  ros2 topic list | grep sensor_manager
+  ```
+
   - 状态机切换(切换到“Active”状态)：
 
-```
-ros2 service call /`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`/sensor_managermachine_service  protocol/srv/FsMachine  "{target_state: "Active"}"
-```
+  ```
+  ros2 service call /`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`/sensor_managermachine_service  protocol/srv/FsMachine  "{target_state: "Active"}"
+  ```

@@ -48,10 +48,10 @@ std::shared_ptr<polygon_base::RegularPolygon> triangle = poly_loader.createShare
 
 ### Module plugin
 
-[GPS Module](/en/cyberdog_gps_en.md)
-[TOF Module](/en/cyberdog_tof_en.md)
-[Radar Module](/en/cyberdog_lidar_en.md )
-[Ultrasound Module](/en/cyberdog_ultrasonic_en.md )
+- [GPS Module](/en/cyberdog_gps_en.md)
+- [TOF Module](/en/cyberdog_tof_en.md)
+- [Radar Module](/en/cyberdog_lidar_en.md )
+- [Ultrasound Module](/en/cyberdog_ultrasonic_en.md )
 
 ## Debug command
 

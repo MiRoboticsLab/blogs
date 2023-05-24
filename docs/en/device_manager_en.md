@@ -46,12 +46,12 @@
 
 ### Module plugin
 
-[Bluetooth Module](/en/cyberdog_bluetooth_en.md )
-[bms module](/en/cyberdog_bms_en.md)
-[led module](/en/cyberdog_led_en.md)
-[touch module](/en/cyberdog_touch_en.md)
-[Uwb module](/en/cyberdog_uwb_en.md )
-[wifi module](/en/cyberdog_wifi_en.md)
+- [Bluetooth Module](/en/cyberdog_bluetooth_en.md )
+- [bms module](/en/cyberdog_bms_en.md)
+- [led module](/en/cyberdog_led_en.md)
+- [touch module](/en/cyberdog_touch_en.md)
+- [Uwb module](/en/cyberdog_uwb_en.md )
+- [wifi module](/en/cyberdog_wifi_en.md)
 
 ## Debug command
 
