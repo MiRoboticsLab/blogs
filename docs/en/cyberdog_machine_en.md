@@ -46,7 +46,7 @@
 
 The overall flow of the state machine is shown in the figure below. After the cyberdog is turned on, the state machine first performs Setup, and then enters the selfcheck stage after the startup is completed. After the self-test is successful, it will enter Acticve, and then the state of the state machine will be determined by various factors such as battery power, exercise status, and users. Perform control switching; before shutdown, the state machine will switch to TearDown mode, and the loaded components will be closed in turn.
 
-![](/home/yp/2/opensource_doc/docs/cn/image/cyberdog_machine/cyberdog_machine_2.svg)
+![](./image/cyberdog_machine/cyberdog_machine_2.svg)
 
 In actual business, in order to shorten the user waiting time, the starup phase of the state machine will be divided into two parts:
 
@@ -55,7 +55,7 @@ In actual business, in order to shorten the user waiting time, the starup phase 
 
 The specific process of state machine flow is as follows:
 
-![](/home/yp/2/opensource_doc/docs/cn/image/cyberdog_machine/cyberdog_machine_3.svg)
+![](./image/cyberdog_machine/cyberdog_machine_3.svg)
 
 
 
