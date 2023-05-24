@@ -30,6 +30,35 @@
 | Protected | controller trigger | start protect mode | enter protect mode                               |      |
 | OTA       | controller trigger | start OTA mode    | enter protect mode                                  |      |
 
+# State machine business overview
+
+## Business logic for each state
+
+- **Setup**：Load and sequentially start the modules in the configuration file that need to be controlled by the state machine. The currently controlled modules include - motion, audio, device, sensor, algorithm, vp_engine, realsense；
+- **Selfcheck**：Check whether the above modules are started successfully and are running normally
+- **Active**：In this state, all functions of cyberdog can be used normally；
+- **Protect**：In this state, some strenuous exercises of the cyberdog will be prohibited, such as front/back flips；
+- **LowPower**：In this state, the cyberdog will lie down and all components will run at low power consumption, and all motion-related functions will be disabled；
+- **OTA**：This state is an online upgrade mode. During the upgrade, cyberdog will lie down and all sports-related functions will be disabled.；
+- **TearDown**：In this state, cyberdog will shut down the modules loaded in the Setup one by one, and then execute the shutdown。
+
+## 状态机流转图示
+
+The overall flow of the state machine is shown in the figure below. After the cyberdog is turned on, the state machine first performs Setup, and then enters the selfcheck stage after the startup is completed. After the self-test is successful, it will enter Acticve, and then the state of the state machine will be determined by various factors such as battery power, exercise status, and users. Perform control switching; before shutdown, the state machine will switch to TearDown mode, and the loaded components will be closed in turn.
+
+![](/home/yp/2/opensource_doc/docs/cn/image/cyberdog_machine/cyberdog_machine_2.svg)
+
+In actual business, in order to shorten the user waiting time, the starup phase of the state machine will be divided into two parts:
+
+1. Basic motion, voice, networking part
+2. Algorithm models, navigation and other parts that take a long time to load
+
+The specific process of state machine flow is as follows:
+
+![](/home/yp/2/opensource_doc/docs/cn/image/cyberdog_machine/cyberdog_machine_3.svg)
+
+
+
 ## Code framework design
 
 1. The inter-process communication of the state machine is completed using the built-in ROS service, and the node pointer is passed in during initialization；
@@ -60,6 +89,8 @@ times = [100, 100, 100, 100, 100, 100, 100, 100, 100]
 - The controller configuration uses 'default' as the default parameter; 'actuators' and 'state' need to correspond to the actual ones, which will affect whether the state machine initialization passes or not.；
 - The actuator is the configuration of the executor, and only those added in the controller will be detected；
 - The 'states' and 'times' of the actuator are lists of the same size, strictly corresponding to the switching overhead of each state.
+
+
 
 ### State Machine Controller
 
@@ -168,7 +199,7 @@ std::string Actuator_2 = std::string("test2");
 auto machine_controller_ptr_ = std::make_shared<cyberdog::machine::MachineController>();
 ```
 
-   - Demo code：https://github.com/MiRoboticsLab/utils/-/blob/dev/cyberdog_machine/test/fs_machine_test_controller.cpp
+   - Demo code：https://github.com/MiRoboticsLab/utils/blob/rolling/cyberdog_machine/test/fs_machine_test_controller.cpp
 
 ### The controller is responsible for switching states
 
@@ -218,4 +249,4 @@ auto machine_controller_ptr_ = std::make_shared<cyberdog::machine::MachineContro
   bool ActuatorStart();
 ```
 
-   - Demo code：https://github.com/MiRoboticsLab/utils/-/blob/dev/cyberdog_machine/test/fs_machine_test_actuator1.cpp
+   - Demo code：https://github.com/MiRoboticsLab/utils/blob/rolling/cyberdog_machine/test/fs_machine_test_actuator1.cpp

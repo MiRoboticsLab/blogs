@@ -31,6 +31,35 @@
 | Protected | controller触发 | 启动低电量模式 | 进入低电量模式                               |      |
 | OTA       | controller触发 | 启动OTA模式    | 进入OTA模式                                  |      |
 
+# 状态机业务概述
+
+## 各状态的业务逻辑
+
+- **Setup**：加载并依次启动配置文件中需要被状态机管控的模块。目前管控的模块有—— motion、audio、device、sensor、algorithm、vp_engine、realsense；
+- **Selfcheck**：检查上述模块是否成功启动，并且运行状态正常；
+- **Active**：该状态下铁蛋的全部功能均能正常使用；
+- **Protect**：该状态下铁蛋的部分剧烈的运动将禁止使用，如前/后空翻；
+- **LowPower**：该状态下铁蛋将会趴下且各组件都将以低功耗的形式运行，同时所有与运动相关的功能都将被禁止；
+- **OTA**：该状态为在线升级模式，在升级完成之间，铁蛋将趴下同时所有运动相关功能将被禁止；
+- **TearDown**：该状态下铁蛋会依次关闭Setup中加载的模块，然后执行关机。
+
+## 状态机流转图示
+
+状态机总体流转如下图所示，铁蛋开机后，状态机首先进行Setup，启动完成之后进入selfcheck阶段，自检成功将进入Acticve，随后状态机的状态将由电量、运动状态、用户等多方面因素进行管控切换；在关机前状态机将切换至TearDown模式，依次关闭被加载的组件。
+
+![](./image/cyberdog_machine/cyberdog_machine_2.svg)
+
+在实际的业务中，为缩短用户等待时间，状态机的starup阶段将分为两部分进行：
+
+1. 基础的运动、语音、联网部分
+2. 算法模型、导航等资源加载时间较长的部分
+
+状态机流转的具体流程如下：
+
+![](./image/cyberdog_machine/cyberdog_machine_3.svg)
+
+
+
 ## 代码框架设计
 
 1. 状态机的跨进程通信使用内置ros service完成，在初始化时传入node指针；
@@ -168,7 +197,7 @@ std::string Actuator_2 = std::string("test2");
 auto machine_controller_ptr_ = std::make_shared<cyberdog::machine::MachineController>();
 ```
 
-   - Demo code：https://github.com/MiRoboticsLab/utils/-/blob/dev/cyberdog_machine/test/fs_machine_test_controller.cpp
+   - Demo code：https://github.com/MiRoboticsLab/utils/blob/rolling/cyberdog_machine/test/fs_machine_test_controller.cpp
 
 ### 状态机执行器
 
@@ -217,5 +246,5 @@ auto machine_controller_ptr_ = std::make_shared<cyberdog::machine::MachineContro
   bool ActuatorStart();
 ```
 
-   - Demo code：https://github.com/MiRoboticsLab/utils/-/blob/dev/cyberdog_machine/test/fs_machine_test_actuator1.cpp
+   - Demo code：https://github.com/MiRoboticsLab/utils/blob/rolling/cyberdog_machine/test/fs_machine_test_actuator1.cpp
 
