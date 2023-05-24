@@ -1,30 +1,13 @@
 # <center>cyberdog_bringup design document</center>
 
-## <font color=Blue size=4> Directory </font>
-* [1. Revise](#1-revise)
-* [2. Overview](#2-overview)
-* [3. Design](#3-design)
-    * [3.1. Feature design](#31-feature-design)
-    * [3.2. modular design](#32-modular-design)
----
-## 1. Revise
-
-<center>
-
-Item|Software Version|Protocol Version|Revision Date|Reviser|Remarks
-:--:|:--|:--|:--:|:--:|:--:
-bringup|V1.1.0.0|V1.0.0.0|2023-02-06|ShangZihan|none
-
-</center>
-
-## 2. Overview
+## 1. Overview
 The main functions of bringup are as follows:
 1. All configured nodes in the robot can be started according to the parameters in the target configuration file (*.yaml);
 2. Dynamically start/stop certain nodes (currently only navigation2 is required);
 3. The configuration file is adapted to the internal interface of ROS2 launch as fully as possible;
 
-## 3. Design
-### 3.1. Feature design
+## 2. Design
+### 2.1. Feature design
 
 There are two types of bringup startup constraints, namely configuration files (*.yaml) and command line startup parameters (argv[]), among which:
 1. The configuration file (*.yaml) has a unique main file, and the parameters in other sub-files that meet the ros constraints can be loaded in the main file;
@@ -40,7 +23,7 @@ Therefore, the startup constraints will be statically exhausted, and dynamic loa
 3. The startup file has a unique main file, which is responsible for starting all nodes under the constraints of parameters;
 4. The start-up file has sub-files of different levels, which are responsible for starting the corresponding nodes under the constraints of parameters.
 
-### 3.2 Technology architecture
+### 2.2 Technology architecture
 
 <center>
 

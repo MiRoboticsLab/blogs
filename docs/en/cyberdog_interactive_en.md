@@ -1,27 +1,10 @@
 # <center>cyberdog_interactive design document</center>
 
-## <font color=Blue size=4> Directory </font>
-* [1. Revise](#1-revise)
-* [2. Overview](#2-overview)
-* [3. Design](#3-design)
-  * [3.1. Feature design](#31-feature-design)
-  * [3.2. modular design](#32-modular-design)
----
-## 1. Revise
-
-<center>
-
-Item|Software Version|Protocol Version|Revision Date|Reviser|Remarks
-:--:|:--|:--|:--:|:--:|:--:
-cyberdog_interactive|V1.1.0.0|V1.0.0.0|2023-02-06|ShangZihan|none
-
-</center>
-
-## 2. Overview
+## 1. Overview
 The interactive function of the bionic robot will have the built-in interactive function in a fixed scene as the basic ability of the robot, and provide programming examples for users, and hope that users (developers) can develop more fun and cool functions.
 
-## 3. Design
-### 3.1. Feature design
+## 2. Design
+### 2.1. Feature design
 
 The action of touching the chin will only be triggered when the dog is in the "sit down" state, and the action of touching the chin is divided into the following three states:
 1. Touch the chin back and forth:
@@ -37,7 +20,7 @@ The action of touching the chin will only be triggered when the dog is in the "s
      - the dog barks once;
      - Twist the buttocks to the left;
 
-### 3.2 Technology architecture
+### 2.2 Technology architecture
 
 <center>
 

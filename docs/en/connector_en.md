@@ -1,23 +1,6 @@
 # <center>connector design document</center>
 
-## <font color=Blue size=4> Directory </font>
-* [1. Revise](#1-revise)
-* [2. Overview](#2-overview)
-* [3. Design](#3-design)
-    * [3.1. Feature design](#31-feature-design)
-    * [3.2. modular design](#32-modular-design)
----
-## 1. Revise
-
-<center>
-
-Item|Software Version|Protocol Version|Revision Date|Reviser|Remarks
-:--:|:--|:--|:--:|:--:|:--:
-connector|V1.1.0.0|V1.0.0.0|2023-02-06|ShangZihan|none
-
-</center>
-
-## 2. Overview
+## 1. Overview
 The bionic robot quickly connects to the network and the target device (hereinafter referred to as fast connection) mainly has the following characteristics:
 1. The bionic robot is in a WiFi environment;
     * WiFi can be a third-party routed WiFi;
@@ -27,14 +10,14 @@ The bionic robot quickly connects to the network and the target device (hereinaf
 4. After the bionic robot successfully connects to the target WiFi, it connects to the device where the target APP is located;
 5. Finally, quickly establish a connection with the target WiFi and device.
 
-## 3. Design
-### 3.1. Feature design
+## 2. Design
+### 2.1. Feature design
 
 There are two main quick connection functions:
 1. Distribution network function: realize the switch by long pressing the touch;
 2. Automatic connection: realized through the system's own reconnection mechanism.
 
-### 3.2 Technology architecture
+### 2.2 Technology architecture
 
 <center>
 
@@ -50,3 +33,20 @@ As shown in the figure above, the composition of the bionic robot fast connectio
 5. QRreader: Provides QR code recognition function.
 6. WiFi: Provides the target WiFi connection function of the linux system.
 7. App: Provides the function of generating QR codes carrying WiFi information.
+
+## 3. Manual networking
+### 3.1 Internet and APP
+```
+ros2 service call /`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`/connect protocol/srv/Connector "{wifi_name: 'wifi_name',wifi_password: 'wifi_password',provider_ip: 'app_ip'}"
+```
+### 3.2 Internet only
+```
+sudo nmcli dev wifi connect <wifi_name> password <wifi_password> ifname wlan0
+```
+### 3.3 other operations
+```
+# View the list of connected WiFi
+nmcli connection | grep wifi
+# Delete the specified WiFi connection in the connected WiFi list
+sudo nmcli connection delete 'ssid' 或者 'uuid'
+```

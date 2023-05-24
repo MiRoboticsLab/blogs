@@ -1,23 +1,6 @@
 # <center>connector 设计文档</center>
 
-## <font color=Blue size=4> 目录 </font>
-* [1. 修订](#1-修订)
-* [2. 概述](#2-概述)
-* [3. 设计](#3-设计)
-    * [3.1. 功能设计](#31-功能设计)
-    * [3.2. 模块设计](#32-模块设计)
----
-## 1. 修订
-
-<center>
-
-项目|软件版本|协议版本|修订日期|修订人员|备注
-:--:|:--|:--|:--:|:--:|:--:
-快连|V1.1.0.0|V1.0.0.0|2023-02-06|尚子涵|无
-
-</center>
-
-## 2. 概述
+## 1. 概述
 仿生机器人快速连接网络及目标设备（下文简称快连）场景主要有以下特性：
 1. 仿生机器人处于WiFi环境中；
     * WiFi可以是第三方路由的WiFi；
@@ -27,14 +10,14 @@
 4. 仿生机器人连接目标WiFi成功后再连接目标APP所在设备；
 5. 最终实现快速和目标WiFi及设备建立连接。
 
-## 3. 设计
-### 3.1. 功能设计
+## 2. 设计
+### 2.1. 功能设计
 
 快连功能主要有两个：
 1. 配网功能：通过长按touch来实现开关；
 2. 自动连接：通过系统自带的重连机制实现。
 
-#### 3.2 模块设计
+#### 2.2 模块设计
 
 <center>
 
@@ -50,3 +33,20 @@
 5. QRreader：提供二维码识别功能。
 6. WiFi：提供 linux 系统的目标WiFi连接功能。
 7. App：提供 携带WiFi信息的 二维码生成功能。
+
+## 3. 手动联网
+### 3.1 联网及APP
+```
+ros2 service call /`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`/connect protocol/srv/Connector "{wifi_name: 'wifi_name',wifi_password: 'wifi_password',provider_ip: 'app_ip'}"
+```
+### 3.2 仅联网
+```
+sudo nmcli dev wifi connect <wifi_name> password <wifi_password> ifname wlan0
+```
+### 3.3 其他操作
+```
+# 查看连接过的WiFi列表
+nmcli connection | grep wifi
+# 删除连接过的WiFi列表中指定WiFi连接
+sudo nmcli connection delete 'ssid' 或者 'uuid'
+```
