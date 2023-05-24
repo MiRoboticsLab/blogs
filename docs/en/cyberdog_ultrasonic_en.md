@@ -16,7 +16,7 @@
 </center>
 
 <!--
-#### Data stream on
+Data stream on
 
 
 <center>
@@ -26,7 +26,7 @@
 </center>
 
 
-#### Data stream closed
+Data stream closed
 
 
 <center>

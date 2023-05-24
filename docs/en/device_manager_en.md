@@ -15,6 +15,7 @@
 ## Functional design
 
 ### Module loading
+
 - [ROS plugin](https://github.com/ros2/ros2_documentation/blob/galactic/source/Tutorials/Beginner-Client-Libraries/Pluginlib.rst)
 
 - ``device_manager`` Use ``pluginlib::ClassLoader`` to load ``cyberdog_uwb`` and other modules.
@@ -43,7 +44,8 @@
   - ``Protocol::srv::GetUWBMacSessionID``: get uwb  mac service
   - ``Protocol::srv::LedExecute``: led control service
 
-###Module plugin
+### Module plugin
+
 [Bluetooth Module](/en/cyberdog_bluetooth_en.md )
 [bms module](/en/cyberdog_bms_en.md)
 [led module](/en/cyberdog_led_en.md)
@@ -51,12 +53,16 @@
 [Uwb module](/en/cyberdog_uwb_en.md )
 [wifi module](/en/cyberdog_wifi_en.md)
 
-##Debug command
-- Get device_manager find-state machine service: 
+## Debug command
+
+- Get device_manager find-state machine service:
+  
   ```
   ros2 topic list | grep device_manager
   ```
+
 - Final-state machine toggle (toggle to "Active" state):
+
     ```
     ros2 service call /`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`/device_managermachine_service  protocol/srv/FsMachine  "{target_state: "Active"}"
     ```

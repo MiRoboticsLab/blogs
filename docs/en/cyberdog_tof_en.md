@@ -13,8 +13,9 @@
  ![avatar](./image/cyberdog_tof/cyberdog_tof.png)
 
 </center>
+
 <!--
-#### Data stream on
+Data stream on
 
 <center>
 
@@ -22,7 +23,7 @@
  
 </center>
 
-#### Data stream closed
+Data stream closed
 
 <center>
 
@@ -30,6 +31,7 @@
 
 </center>
 -->
+
 ## Functional design
 
 - Flexible configuration of sensor number, message source, command id , etc. through configuration file

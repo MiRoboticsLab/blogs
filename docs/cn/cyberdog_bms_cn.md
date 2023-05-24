@@ -7,13 +7,16 @@
 ## 2 软件设计
 
 #### 2.1 软件框架
+
 ![](./image/cyberdog_bms/cyberdog_bms.png)
+
 <!--
-#### 2.2 数据流开启
+2.2 数据流开启
 ![](./image/cyberdog_bms/cyberdog_bms_open_flow.png)
-#### 2.3 数据流关闭
+2.3 数据流关闭
 ![](./image/cyberdog_bms/cyberdog_bms_close_flow.png)
 -->
+
 ## 3 功能设计
 
  - 通过配置文件可灵活配置消息源、指令id等

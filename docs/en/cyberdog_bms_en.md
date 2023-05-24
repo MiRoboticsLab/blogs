@@ -9,10 +9,10 @@
 ### 2.1 Software framework
 ![](./image/cyberdog_bms/cyberdog_bms.png)
 <!--
-### 2.2 Data stream on
+2.2 Data stream on
 ![](./image/cyberdog_bms/cyberdog_bms_open_flow.png)
 
-### 2.3 Data stream closed
+2.3 Data stream closed
 ![](./image/cyberdog_bms/cyberdog_bms_close_flow.png)
 -->
 ## 3 Functional design
