@@ -20,12 +20,12 @@
 - [ROS plugin](https://github.com/ros2/ros2_documentation/blob/galactic/source/Tutorials/Beginner-Client-Libraries/Pluginlib.rst)
 
 - ``sensor_manager`` Use ``pluginlib::ClassLoader``to load ``cyberdog_tof`` and other modules.
+
 ```
 //Refer to the ros sample for the loading process
 pluginlib::ClassLoader<polygon_base::RegularPolygon> poly_loader("polygon_base", "polygon_base::RegularPolygon");
 
 std::shared_ptr<polygon_base::RegularPolygon> triangle = poly_loader.createSharedInstance("polygon_plugins::Triangle");
-    
 ```
 
 ### Finite-state machine management
@@ -46,18 +46,23 @@ std::shared_ptr<polygon_base::RegularPolygon> triangle = poly_loader.createShare
   - ``Protocol:: msg:: RearTofPayload``: tail Tof message
   - ``Protocol:: srv:: SensorOperation``: Sensor Control Service
 
-###Module plugin
-[GPS Module](/en/cyberdog_gps_en.md)
-[TOF Module](/en/cyberdog_tof_en.md)
-[Radar Module](/en/cyberdog_lidar_en.md )
-[Ultrasound Module](/en/cyberdog_ultrasonic_en.md )
+### Module plugin
 
-##Debug command
-- Get sensor_manager find-state machine service: 
+- [GPS Module](/en/cyberdog_gps_en.md)
+- [TOF Module](/en/cyberdog_tof_en.md)
+- [Radar Module](/en/cyberdog_lidar_en.md )
+- [Ultrasound Module](/en/cyberdog_ultrasonic_en.md )
+
+## Debug command
+
+- Get sensor_manager find-state machine service:
+
   ```
   ros2 topic list | grep sensor_manager
   ```
+
 - Final-state machine toggle (toggle to "Active" state):
+
   ```
   ros2 service call /`ros2 node list | grep "mi_" | head -n 1 | cut -f 2 -d "/"`/sensor_managermachine_service  protocol/srv/ FsMachine  "{target_state: "Active"}"
   ```

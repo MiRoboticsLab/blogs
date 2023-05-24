@@ -13,16 +13,18 @@
  ![avatar](./image/cyberdog_tof/cyberdog_tof.png)
 
 </center>
+
 <!--
-#### 数据流开启
+
+数据流开启
 
 <center>
 
  ![avatar](./image/cyberdog_tof/cyberdog_tof_open_flow.png)
- 
+
 </center>
 
-#### 数据流关闭
+数据流关闭
 
 <center>
 
@@ -30,6 +32,7 @@
 
 </center>
 -->
+
 ## 功能设计
 
  - 通过配置文件可灵活配置传感器个数、消息源、指令id等

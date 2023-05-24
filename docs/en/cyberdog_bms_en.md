@@ -1,26 +1,28 @@
 # cyberdog_bms design document
 
-## 1 Overview
+## Overview
 
 ``cyberdog_bms``  provides bms data service to the client side in the form of ros2 plugin. This plug-in provides the necessary API interface for controlling bms, and converts the collected power board data into ros message format and publishes it through device_manager.
 
-## 2 Software Design
+## Software Design
 
-### 2.1 Software framework
+### Software framework
 ![](./image/cyberdog_bms/cyberdog_bms.png)
+
 <!--
-### 2.2 Data stream on
+2.2 Data stream on
 ![](./image/cyberdog_bms/cyberdog_bms_open_flow.png)
 
-### 2.3 Data stream closed
+2.3 Data stream closed
 ![](./image/cyberdog_bms/cyberdog_bms_close_flow.png)
 -->
-## 3 Functional design
+
+## Functional design
 
 - Flexible configuration of message sources, command ids , etc. through configuration files
 - Provide basic ability interfaces such as enable, shutdown, and self-check
 
-## 4 Configuration files
+## Configuration files
 
 - Source path: ``bridges/params/toml_config/device``
 - Installed path：``/opt/ros2/cyberdog/share/params/toml_config/device``
@@ -47,7 +49,8 @@
 - Agreement introduction:
   - ``Protocol:: msg:: BmsStatus``: Power management module data format
     - Protocol path：``bridges/protocol/ros/msg/BmsStatus.msg``
-##  5 API interface
+
+## API interface
 - ``bool Init(std::function<void(BmsStatusMsg)>function_callback, bool simulation)``：initialize configuration
   - ``simulator = true``:Configure to emulate mode
   - ``function_callback``:Set callback function for message.
