@@ -1,11 +1,5 @@
 # Audio Design Document
 
-## Version
-
-| Author | change                                           | version | date       |
-| ------ | ------------------------------------------------ | ------- | ---------- |
-| KaiLiu | Sort out the overall framework of cyberdog_audio | 1.0     | 2023.05.21 |
-
 ## Overview
 
 cyberdog_audio is voice service transfer station between nx and r329. For example, specific requests for playing offline or online voices can be forwarded through cyberdog_audio.
