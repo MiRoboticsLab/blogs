@@ -11,7 +11,8 @@ cyberdog_wifi is the ROS interface node for cyberdog to control the WiFi connect
    2. WiFi info publisher: Publishing wifi connection status info, including SSID, RSSI, local IP, etc
 
 1. connector node: Acquiring WiFi status info, and activating request  
-![structure](./image/cyberdog_wifi/cyberdog_wifi_en_structure.svg)
+![structure](./image/cyberdog_wifi/cyberdog_wifi_en_structure.svg)  
+
 ## Operation Process
 
 ### Connection Process

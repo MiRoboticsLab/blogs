@@ -11,7 +11,8 @@ cyberdog_wifi是cyberdog控制WiFi连接的ROS接口节点，其它ROS节点可�
     - WiFi信息发布器：用于在连接状态向外广播当前的连接信息，包括ssid、信号强度和本设备IP
 
 1. connector节点：获取WiFi连接状态，发起连接请求  
-![structure](./image/cyberdog_wifi/cyberdog_wifi_cn_structure.svg)
+![structure](./image/cyberdog_wifi/cyberdog_wifi_cn_structure.svg)  
+
 ## 运行流程
 
 ### 连接流程
