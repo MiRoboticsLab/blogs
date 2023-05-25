@@ -49,6 +49,7 @@
   - [激光建图定位模块](cn/cyberdog_laserslam_cn.md)
 
 - 开发者手册
+  - [开发者手册](cn/developer_guide.md)
   - [刷机文档](cn/cyberdog_flash.md)
   - [GRPC协议](cn/grpc_protocol.md)
   - [可视化编程协议](cn/cyberdog_vp_protocol_document_cn.md)
