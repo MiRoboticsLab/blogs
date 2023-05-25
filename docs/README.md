@@ -44,8 +44,7 @@
 ## 资源
 
 - 核心代码开源：[Github地址](https://github.com/MiRoboticsLab/cyberdog_ws)
-- 开发者手册（API，上述第1、2种开发方式）：
+- 开发者手册（API，上述第1、2种开发方式）：[博客地址](https://miroboticslab.github.io/blogs/#/cn/developer_guide)
 - 程序设计（源码，上述第3种开发方式）：应用文档，运控文档，slam文档以及感知文档；
 - 刷机：[博客地址](https://miroboticslab.github.io/blogs/#/cn/cyberdog_flash)
-- 硬件资料：
 - 运营咨询：[mi-cyberdog@xiaomi.com](mailto:mi-cyber@xiaomi.com) 
