@@ -1,6 +1,7 @@
 # Cyberdog_led 设计文档
 ## 1. 功能概述
-  cyberdog_led模块负责系统中头部led灯带、尾部led灯带以及mini led 灯效的控制。
+  cyberdog_led模块负责系统中头部led灯带、尾部led灯带以及mini led 灯效的控制。该模块在device_manager pkg中以ros2 plugin的形式引用，并提供相应的ros2 service用与相应系统中需要使用LED模块调用。代码放置在device仓库中。
+  https://github.com/MiRoboticsLab/devices/tree/rolling/cyberdog_led
 
 ## 2. 模块结构
 
@@ -161,3 +162,25 @@
    g_value = 33
    b_value = 226
    ```
+
+
+  ## 4.api接口
+  ```makefile
+  bool Config():加载配置参数，优先级配置、默认的灯的颜色等等
+  bool Init():加载系统灯效和初始化优先级记录数据等
+  void Play(
+    const std::shared_ptr<protocol::srv::LedExecute::Request> info_request,
+    std::shared_ptr<protocol::srv::LedExecute::Response> info_response):响应用户请求，播放相应的灯效。
+  void rgb_led_cmd(std::vector<uint8_t> & temp_vector, Request_Attribute & operatecmd):根据用户请求，生成待执行的rgb led的灯效。
+  void mini_led_cmd(std::vector<uint8_t> & temp_vector, Request_Attribute & operatecmd):根据用户请求，生成待执行的mini led的灯效。
+  void find_cmd(
+    const std::shared_ptr<protocol::srv::LedExecute::Request> info_request,
+    Request_Attribute & operatecmd):根据优先级策略在历史队列中找到需要执行的灯效。
+  int32_t request_legal(const std::shared_ptr<protocol::srv::LedExecute::Request> info_request):判断用户请求的参数是否合法。
+  int32_t play_by_priority(Request_Attribute & operatecmd):执行灯效
+  bool request_load_priority(
+    const std::shared_ptr<protocol::srv::LedExecute::Request> info_request):判断当前请求的优先级是否足够立即播放灯效。
+  void head_led_callback(std::string & name, std::shared_ptr<cyberdog::device::LedToml> data):头灯接收其mcu返回信号的callback函数。
+  void tail_led_callback(std::string & name, std::shared_ptr<cyberdog::device::LedToml> data):尾灯接收其mcu返回信号的callback函数。
+  void mini_led_callback(std::string & name, std::shared_ptr<cyberdog::device::LedToml> data):mini led 接收其mcu返回信号的callback函数。
+  ```
