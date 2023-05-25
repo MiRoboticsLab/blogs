@@ -1,6 +1,8 @@
 # Cyberdog_led Design
 ## 1. Functional Overview
-  The cyberdog_led module is responsible for the control of the head led, tail led l and mini led effect in the system.
+  The cyberdog_led module is responsible for the control of the head led, tail led l and mini led effect in the system.The module is referenced in the device_manager pkg as ros2 plugin, and provides the corresponding ros2 service to be called with the LED module in the corresponding system. The code is placed in the device repository.
+
+https://github.com/MiRoboticsLab/devices/tree/rolling/cyberdog_led
 
 
 ## 2. Architecture Design
@@ -163,3 +165,27 @@
    g_value = 33
    b_value = 226
    ```
+
+
+
+
+## 4.api接口
+  ```makefile
+  bool Config():Load configuration parameters, priority configuration, default light color, etc.
+  bool Init():Load system lighting effects and initialize priority recording data, etc.
+  void Play(
+    const std::shared_ptr<protocol::srv::LedExecute::Request> info_request,
+    std::shared_ptr<protocol::srv::LedExecute::Response> info_response):Respond to user requests and play corresponding led effects.
+  void rgb_led_cmd(std::vector<uint8_t> & temp_vector, Request_Attribute & operatecmd):According to the user's request, generate the led effect of the rgb led to be executed.
+  void mini_led_cmd(std::vector<uint8_t> & temp_vector, Request_Attribute & operatecmd):According to the user's request, generate the led effect of the mini led to be executed.
+  void find_cmd(
+    const std::shared_ptr<protocol::srv::LedExecute::Request> info_request,
+    Request_Attribute & operatecmd):Find the led effect that needs to be executed in the history queue according to the priority policy.
+  int32_t request_legal(const std::shared_ptr<protocol::srv::LedExecute::Request> info_request):Determine whether the parameters requested by the user are legal.
+  int32_t play_by_priority(Request_Attribute & operatecmd):excute led effect
+  bool request_load_priority(
+    const std::shared_ptr<protocol::srv::LedExecute::Request> info_request):Determine whether the priority of the current request is sufficient to play the lighting effect immediately.
+  void head_led_callback(std::string & name, std::shared_ptr<cyberdog::device::LedToml> data): The head led receives the callback function of the signal returned by its mcu.
+  void tail_led_callback(std::string & name, std::shared_ptr<cyberdog::device::LedToml> data):The tail led receives the callback function of the signal returned by its mcu.
+  void mini_led_callback(std::string & name, std::shared_ptr<cyberdog::device::LedToml> data): The mini led receives the callback function of the signal returned by its mcu.
+  ```
