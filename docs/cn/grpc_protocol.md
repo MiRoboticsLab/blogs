@@ -9,7 +9,7 @@
 
 ### 方案设计
 
-[cyberdog_grpc设计文档](./cyberdog_grpc_cn.md) 
+[cyberdog_grpc设计文档](/cn/cyberdog_grpc_cn.md) 
 
 
 ## 运动控制
@@ -2610,61 +2610,6 @@ params
 
 ros接口：service，类型："std_srvs/srv/SetBool"，名称："enable_elec_skin"
 
-## 电致变色
-
-### 变色功能使能
-
-ros接口：service，类型："std_srvs/srv/SetBool"，名称："enable_elec_skin"
-
-#### 下行指令
-
-```YAML
-NameCode = 11001
-
-param
-{
-    bool data # true开始 false关闭
-}
-```
-
-#### 返回结果
-
-```Go
-NameCode = 11001
-
-data
-{
-    bool success
-    string message
-}
-```
-
-### 设置变色模式
-
-ros接口：service，类型："protocol/srv/ElecSkin"，名称："set_elec_skin"
-
-#### 下行指令
-
-```Nginx
-NameCode = 11002
-
-param
-{
-    int32 mode # 0-全黑 1-全白 2-前向后渐变 3-后向前渐变 4-闪烁 5-随机 6-动态（随落地腿变色）
-    int32 wave_cycle_time # 0-5静态效果模式下表示变色时间ms（0和1参考值50，2~5参考值2000），6动态模式下0值表示落地腿变白，非零表示变深色
-}
-```
-
-#### 返回结果
-
-```Nginx
-NameCode = 11002
-
-data
-{
-    bool success 
-}
-```
 
 ## 狗腿校准
 
