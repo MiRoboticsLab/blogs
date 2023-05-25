@@ -28,7 +28,6 @@
   - [bluetooth](en/cyberdog_bluetooth_en.md)
   - [audio](en/cyberdog_audio_en.md)
   - [machine](en/cyberdog_machine_en.md)
-  - [parameter](en/cyberdog_parameter_en.md)
   - [Unified Error Code](en/cyberdog_system_en.md)
   - [common](en/cyberdog_common_en.md)
   
