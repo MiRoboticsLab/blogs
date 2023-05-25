@@ -50,5 +50,7 @@
 
 - 开发者手册
   - [刷机文档](cn/cyberdog_flash.md)
+  - [GRPC协议](cn/grpc_protocol.md)
+  - [可视化编程协议](cn/cyberdog_vp_protocol_document_cn.md)
  
  
