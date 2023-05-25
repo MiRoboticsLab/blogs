@@ -28,7 +28,6 @@
   - [蓝牙模块](cn/cyberdog_bluetooth_cn.md)
   - [语音模块](cn/cyberdog_audio_cn.md)
   - [状态机模块](cn/cyberdog_machine_cn.md)
-  - [参数配置模块](cn/cyberdog_parameter_cn.md)
   - [系统统一错误码模块](cn/cyberdog_system_cn.md)
   - [通用工具模块](cn/cyberdog_common_cn.md)
 
