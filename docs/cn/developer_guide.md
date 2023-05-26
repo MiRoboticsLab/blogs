@@ -2562,7 +2562,7 @@ bool data               # true: 断开当前wifi与当前app连接，反之无�
 
 # 可视化编程 
 
-参考：[图形化编程帮助文档](https://xiaomi.f.mioffice.cn/docs/dock42yTK5kj89KQZppS8RXFXPd)  
+参考：[图形化编程帮助文档](/cn/cyberdog_vp_cn.md)
 
 ## 可视化编程接口能力 
 
