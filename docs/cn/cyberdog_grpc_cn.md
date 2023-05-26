@@ -78,4 +78,4 @@ make
 
 即返回数据，对应调用功能的输出结果。
 
-[业务协议](./grpc_protocol.md)
+[业务协议](/cn/grpc_protocol.md)
