@@ -1,5 +1,6 @@
 # Algorithm Task Management Design Document
-
+## Overview
+The algorithm task management module is a centralized management module for task instructions related to autonomous walking capabilities in the system. It includes algorithm tasks such as mapping, localization, navigation, and tracking. This module makes decisions on user task instructions based on the system's overall state machine, task execution status, and manages hardware and software resources in the system according to the determined task type.
 ## Module architecture
 
 <center>

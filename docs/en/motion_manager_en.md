@@ -1,4 +1,6 @@
 # Motion Management Design Documentation
+## Overview
+The motion management module is responsible for centralized management of motion control functions. All motion control calls are forwarded to the motion control layer by this module, and it receives status feedback from the motion control layer. In response to user instructions for motion control, this module makes centralized decisions and executes them based on the system's overall state machine, power status, and motion status.
 
 ## Modular architecture
 
