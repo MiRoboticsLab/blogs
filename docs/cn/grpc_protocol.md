@@ -9,7 +9,7 @@
 
 ### 方案设计
 
-[cyberdog_grpc设计文档](./cyberdog_grpc_cn.md) 
+[cyberdog_grpc设计文档](/cn/cyberdog_grpc_cn.md) 
 
 
 ## 运动控制
