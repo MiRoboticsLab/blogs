@@ -79,3 +79,5 @@ Corresponds to input info of the function.
 #### Data
 
 Corresponds to output info of the function.
+
+[protocol doc](/cn/grpc_protocol.md)
