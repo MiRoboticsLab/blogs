@@ -2,7 +2,7 @@
 
 ## Overview
 
-``sensor_manager`` is the management module of ``cyberdog_tof``, ``cyberdog_ultrasonic``, ``cyberdog_lidar`` and other functional modules; it provides the ability of find-state machine management, service callback, and message release for each module. Each module is loaded into the device_manager in the form of ros plugin.
+``sensor_manager`` is the management module of ``cyberdog_tof``, ``cyberdog_ultrasonic``, ``cyberdog_lidar`` and other functional modules; it provides the ability of find-state machine management, service callback, and message release for each module. Each module is loaded into the ``sensor_manager`` in the form of ros plugin.
 ## Software design
 
 <center>
@@ -48,10 +48,10 @@ std::shared_ptr<polygon_base::RegularPolygon> triangle = poly_loader.createShare
 
 ### Module plugin
 
-- [GPS Module](/en/cyberdog_gps_en.md)
-- [TOF Module](/en/cyberdog_tof_en.md)
-- [Radar Module](/en/cyberdog_lidar_en.md )
-- [Ultrasound Module](/en/cyberdog_ultrasonic_en.md )
+- [GPS Module](/en/cyberdog_gps_en.md);
+- [TOF Module](/en/cyberdog_tof_en.md);
+- [Radar Module](/en/cyberdog_lidar_en.md);
+- [Ultrasound Module](/en/cyberdog_ultrasonic_en.md).
 
 ## Debug command
 

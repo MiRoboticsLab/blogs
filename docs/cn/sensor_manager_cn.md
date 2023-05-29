@@ -2,7 +2,7 @@
 
 ##  概述
 
-``sensor_manager`` 是``cyberdog_tof``、``cyberdog_ultrasonic``、``cyberdog_lidar``等功能模块的管理模块;为各模块提供状态机管理、服务回调、消息发布的能力。各模块以ros plugin形式加载到device_manager。
+``sensor_manager`` 是``cyberdog_tof``、``cyberdog_ultrasonic``、``cyberdog_lidar``等功能模块的管理模块;为各模块提供状态机管理、服务回调、消息发布的能力。各模块以ros plugin形式加载到``sensor_manager``。
 
 ##  软件设计
 
