@@ -13,8 +13,7 @@ cyberdog_miloc算法包括视觉建图、重定位、地图地图管理等模块
 ## 服务流程
 
 ### 建图服务流程
-<img src=./image/cyberdog_miloc/miloc_mapping_process.jpg width=558 height=978 />
+![cyberdog_miloc_mapping](./image/cyberdog_miloc/miloc_mapping_process.jpg)
 
 ### 重定位定位服务流程
-
-<img src=./image/cyberdog_miloc/miloc_relocalization_process.jpg width=578 height=978 />
+![cyberdog_miloc_reloc](./image/cyberdog_miloc/miloc_relocalization_process.jpg)
