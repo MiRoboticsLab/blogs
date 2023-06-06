@@ -13,11 +13,11 @@ The cyberdog_mivins localization algorithm includes modules for data input, fron
 ## Service Process
 
 ### mapping service process
-<img src=./image/cyberdog_mivins/mivins_mapping_process.jpg width=558 height=978 />
+![mivins_mapping_process](./image/cyberdog_mivins/mivins_mapping_process.jpg)
 
 ### localization service process
 
-<img src=./image/cyberdog_mivins/mivins_localization_process.jpg width=578 height=978 />
+![mivins_localization_process](./image/cyberdog_mivins/mivins_localization_process.jpg)
 
 ### following localization function process
-<img src=./image/cyberdog_mivins/mivins_following_process.jpg width=220 height=700 />
+![mivins_following_process](./image/cyberdog_mivins/mivins_following_process.jpg)
