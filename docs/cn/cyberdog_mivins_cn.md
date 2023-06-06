@@ -13,11 +13,11 @@ cyberdog_mivins定位算法包括数据输入、前端跟踪、前端建图、�
 ## 服务流程
 
 ### 建图服务流程
-<img src=./image/cyberdog_mivins/mivins_mapping_process.jpg width=558 height=978 />
+![mivins_mapping_process](./image/cyberdog_mivins/mivins_mapping_process.jpg)
 
 ### 定位服务流程
 
-<img src=./image/cyberdog_mivins/mivins_localization_process.jpg width=578 height=978 />
+![mivins_localization_process](./image/cyberdog_mivins/mivins_localization_process.jpg)
 
 ### 跟随定位服务流程
-<img src=./image/cyberdog_mivins/mivins_following_process.jpg width=220 height=700 />
+![mivins_following_process](./image/cyberdog_mivins/mivins_following_process.jpg)
