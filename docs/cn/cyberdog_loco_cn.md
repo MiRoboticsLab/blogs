@@ -64,13 +64,13 @@ struct example_t
 ### 1.4 连接机器人
 使用运动控制二次开发接口，首先需要申请开发者权限，否则相关端口会被封禁，用户无法进入或连接机器人控制板。其次，独立调用运动控制高层接口或底层接口时，需要断开APP连接，避免控制信号冲突。另外，如果开启了低功耗模式(默认关闭，详见APP设置)，机器人处于趴下状态超过30秒，系统会进入休眠，此时，运动控制接口也无法使用。在确认权限和模式正确后，拆开调试盖板，用户电脑有两种方式连接到机器人控制板：
 
-**方式1(推荐)**：通过网线连接铁蛋的网口，并将用户电脑IP设为：192.168.44.100/255.255.255.0
+**方式1(推荐)**：通过网线连接机器人的网口，并将用户电脑IP设为：192.168.44.100/255.255.255.0
 ```shell
 $ ping 192.168.44.100     #用户电脑被分配的IP
 $ ssh mi@192.168.44.1     #登录NX应用板，密码123
 $ ssh root@192.168.44.233 #可从用户电脑直接登录运控板
 ```
-**方式2**：将用户电脑连接至铁蛋的USB Type-C接口(位于中间充电口的右侧)，等待出现”L4T-README” 弹窗，用户电脑IP会被自动分配
+**方式2**：将用户电脑连接至机器人的USB Type-C接口(位于中间充电口的右侧)，等待出现”L4T-README” 弹窗，用户电脑IP会被自动分配
 ```shell
 $ ping 192.168.55.100     #用户电脑被分配的IP
 $ ssh mi@192.168.55.1     #登录NX应用板 ,密码123
@@ -78,7 +78,7 @@ $ ssh root@192.168.44.233 #可在登录NX应用板后，再登录运控板（192
 ```
 > **注意**：方式2中，用户虽然可以登录NX应用板和运控板查看机器人状态，但因为用户电脑和运控板不在同一个网段，所以用户无法在自己电脑上基于LCM通信使用该运控接口进行开发。
 
-如需**在用户电脑**使用该运控开发接口，按照方式1通过网线连接铁蛋后，在用户电脑用下面脚本配置路由表即可：
+如需**在用户电脑**使用该运控开发接口，按照方式1通过网线连接机器人后，在用户电脑用下面脚本配置路由表即可：
 ```shell
 $ git clone loco_hl_example.git # 下载高层接口例程仓库
 $ cd loco_hl_example/scripts
@@ -549,7 +549,7 @@ if __name__ == '__main__':
 This demo show the communication interface of MR813 motion control board based on Lcm
 Dependency: 
 - robot_control_cmd_lcmt.py
-- mini_cyberdog_ctrl.py
+- cyberdog2_ctrl.py
 '''
 import lcm
 import toml
@@ -618,7 +618,7 @@ def main():
 if __name__ == '__main__':
     main()
  ```
-> **注意**：运行该Python脚本，依赖lcm数据类型文件robot_control_cmd_lcmt.py和序列动作文件mini_cyberdog_ctrl.toml。
+> **注意**：运行该Python脚本，依赖lcm数据类型文件robot_control_cmd_lcmt.py和序列动作文件cyberdog2_ctrl.toml。
 
 #### 2.4.3 自定义步态
 本例程是Python脚本，通过读取自定义步态文件和序列动作文件，实现控制机器人依次站立，太空步和趴下等动作。示例中Gait_Params_moonwalk.toml 文件包含2.2.2自定义步态相关参数介绍，脚本首先按一定映射关系将其编码为基本robot_control_cmd_lcmt 结构体序列(Gait_Params_moonwalk_full.toml)再下发。
@@ -742,7 +742,7 @@ if __name__ == '__main__':
 > **注意**：运行该Python脚本，依赖lcm数据类型文件robot_control_cmd_lcmt.py和file_send_lcmt.py，自定义步态文件Gait_Def_moonwalk.toml和Gait_Params_moonwalk.toml，以及序列动作文件Usergait_List.toml。
 
 ## 3. 底层接口
-底层接口开放了电机驱动器和机身IMU传感器接口，方便用户开发自己的运动控制器。参见[cyberdog_motor_sdk](https://github.com/MiRoboticsLab/cyberdog_motor_sdk)中mini_cyberdog分支
+底层接口开放了电机驱动器和机身IMU传感器接口，方便用户开发自己的运动控制器。参见[cyberdog_motor_sdk](https://github.com/MiRoboticsLab/cyberdog_motor_sdk)中cyberdog2分支
 
 ### 3.1 接口介绍
 底层接口的CustomInterface类实现了对电机控制指令的下发，以及关节编码器，IMU传感器信息的获取，具体接口内容包括：
@@ -779,7 +779,7 @@ BIT(2) 警告，侧摆髋关节期望位置变化大于8度，该帧变化幅度
 BIT(3) 警告，前摆髋关节期望位置变化大于10度，该帧变化幅度会被钳位到10度，以避免腿部飞车
 BIT(4) 警告，膝关节期望位置变化大于12度，该帧变化幅度会被钳位到12度，以避免腿部飞车
 ```
-> **注意**：bit2~bit4为**位置指令跳变警告**，即相邻帧期望角度变化过大（比如膝关节前一帧的期望角度是10度，如果当前帧下发30度，实际会被钳位到10度执行）。该机制用于提供一定的飞车保护功能，默认开启。如需关闭，可以登录运控板，将配置文件/robot/robot-software/common/config/cyberdog-mini-ctrl-user-parameters.yaml 中的 motor_sdk_position_mutation_limit 置0。
+> **注意**：bit2~bit4为**位置指令跳变警告**，即相邻帧期望角度变化过大（比如膝关节前一帧的期望角度是10度，如果当前帧下发30度，实际会被钳位到10度执行）。该机制用于提供一定的飞车保护功能，默认开启。如需关闭，可以登录运控板，将配置文件/robot/robot-software/common/config/cyberdog2-ctrl-user-parameters.yaml 中的 motor_sdk_position_mutation_limit 置0。
 
 > **注意**：出现BIT(1)超时错误时，待机器人趴下后(2s)发送全零控制帧可以清除错误。由于大部分超时是通信断联引起的，此时如果是在用户电脑上部署运行，需要重新配置路由表。
 
@@ -802,7 +802,7 @@ $ ./auto_lcm_init.sh #配置路由表，脚本存放在高层接口例程仓库
 ```
 - 编译并运行代码
 ```shell
-$ git clone -b mini_cyberdog https://github.com/MiRoboticsLab/cyberdog_motor_sdk #下载底层接口示例代码
+$ git clone -b cyberdog2 https://github.com/MiRoboticsLab/cyberdog_motor_sdk #下载底层接口示例代码
 $ cd cyberdog_motor_sdk
 $ mkdir build && cd build
 $ cmake .. #编译
@@ -814,7 +814,7 @@ $ ./example_motor_ctrl #运行
 和部署在用户电脑一样，考虑到跨设备通信的时延和不稳定，在NX应用板使用底层接口，也仅推荐编译验证和简单的关节位置控制测试：
 
 ```shell
-$ git clone -b mini_cyberdog https://github.com/MiRoboticsLab/cyberdog_motor_sdk #下载底层接口示例代码
+$ git clone -b cyberdog2 https://github.com/MiRoboticsLab/cyberdog_motor_sdk #下载底层接口示例代码
 $ scp -r cyberdog_motor_sdk mi@192.168.44.1:/home/mi/ #将底层接口示例代码拷入应用板，密码123
 $ ssh mi@192.168.44.1 #登录应用板
 mi@lubuntu:~$ cd /home/mi/cyberdog_motor_sdk
@@ -838,7 +838,7 @@ $ docker images
 ```
 - 运行docker镜像进行交叉编译
 ```shell
-$ git clone -b mini_cyberdog https://github.com/MiRoboticsLab/cyberdog_motor_sdk #下载底层接口示例代码
+$ git clone -b cyberdog2 https://github.com/MiRoboticsLab/cyberdog_motor_sdk #下载底层接口示例代码
 $ docker run -it --rm --name cyberdog_motor_sdk -v /home/xxx/{sdk_path}:/work/build_farm/workspace/cyberdog cr.d.xiaomi.net/athena/athena_cheetah_arm64:2.0 /bin/bash #运行docker镜像，/home/xxx/{sdk_path}是示例代码绝对路径
 [root:/work] # cd /work/build_farm/workspace/cyberdog/ #进入docker系统的代码仓
 [root:/work/build_farm/workspace/cyberdog] # mkdir onboard-build && cd onboard-build

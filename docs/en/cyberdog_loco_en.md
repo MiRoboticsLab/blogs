@@ -590,7 +590,7 @@ This example code is a Python script. By reading the definition file of the sequ
 This demo show the communication interface of MR813 motion control board based on Lcm
 Dependency: 
 - robot_control_cmd_lcmt.py
-- mini_cyberdog_ctrl.py
+- cyberdog2_ctrl.py
 '''
 import lcm
 import toml
@@ -659,7 +659,7 @@ def main():
 if __name__ == '__main__':
     main()
 ```
-> **_NOTE:_** The example code relies on the lcm data type file **robot_control_cmd_lcmt.py** and the sequential motion definition file **mini_cyberdog_ctrl.toml** to run.
+> **_NOTE:_** The example code relies on the lcm data type file **robot_control_cmd_lcmt.py** and the sequential motion definition file **cyberdog2_ctrl.toml** to run.
 
 #### 2.4.3 Customized Gait
 This example code is a Python script. By reading the definition files of customized gait and sequential motion, the robot can be controlled to stand, moonwalk and get down in sequence. The _Gait_Params_moonwalk.toml_ file used in the example code contains customized-gait-related parameters introduced in Section 2.2.2, which will be converted first according to the robot_control_cmd_lcmt data structure (Gait_Params_moonwalk_full.toml) before sending.
@@ -785,7 +785,7 @@ if __name__ == '__main__':
 
 ## 3. Low-level Interface
 Low-level(Motor Level) interface allows users to develop their own controller by directly interacting with motor level control messages and IMU sensory feedback messages.
-See `mini_cyberdog` branch in [cyberdog_motor_sdk](https://github.com/MiRoboticsLab/cyberdog_motor_sdk) for source code.
+See `cyberdog2` branch in [cyberdog_motor_sdk](https://github.com/MiRoboticsLab/cyberdog_motor_sdk) for source code.
 
 ### 3.1 Introduction to Low-level Interface
 The CustomInterface class realizes the sending of low-level control command and the acquisition of encoders and IMU sensory feedback. The interface contains two struct:
@@ -824,7 +824,7 @@ The meanings of each bit of error flag `RobotData->err_flag` are listed below:
 - BIT(4) WARNING, the desired position change of knee joint changes by more than 12 degrees, and the change range will be clamped to 12 degrees to avoid danger
 
 
-> **_NOTE:_** BIT(2)~ BIT(4) are **position jump warnings**, i.e. the desired joint positions of adjacent frames changes too much (e.g., the desired positions of the knee joint is 10 degrees in the previous frame and it is 30 degrees in current frame, then the actual position change will be clamped to 10 degrees, i.e. the actual current desired position is 20 deg). This mechanism is used to prevent violent leg movements and is by default **turned on**, to close it, you can ssh into the MC board and change the configuration bit `motor_sdk_position_mutation_limit` in `/robot/robot-software/common/config/cyberdog-mini-ctrl-user-parameters.yaml` from 1 to 0.
+> **_NOTE:_** BIT(2)~ BIT(4) are **position jump warnings**, i.e. the desired joint positions of adjacent frames changes too much (e.g., the desired positions of the knee joint is 10 degrees in the previous frame and it is 30 degrees in current frame, then the actual position change will be clamped to 10 degrees, i.e. the actual current desired position is 20 deg). This mechanism is used to prevent violent leg movements and is by default **turned on**, to close it, you can ssh into the MC board and change the configuration bit `motor_sdk_position_mutation_limit` in `/robot/robot-software/common/config/cyberdog2-ctrl-user-parameters.yaml` from 1 to 0.
 
 > **_NOTE:_** BIT(1) error can be cleared when user sends all-zero low-level commands after the robot lying down for 2s. In most cases, BIT(1) error is caused by communication breakdown,  if the control program is running from an external PC, user may need to reconfigure the route table after reconnection.
 
@@ -849,7 +849,7 @@ $ ./auto_lcm_init.sh #configure routing table, the script is stored in the repos
 3. Build the source code and run the example
 
 ```shell
-$ git clone -b mini_cyberdog https://github.com/MiRoboticsLab/cyberdog_motor_sdk #clone the motor sdk example code
+$ git clone -b cyberdog2 https://github.com/MiRoboticsLab/cyberdog_motor_sdk #clone the motor sdk example code
 $ cd cyberdog_motor_sdk
 $ mkdir build && cd build
 $ cmake .. #build the example code
@@ -862,7 +862,7 @@ The procedure is similar to Deployment on an external PC. Due to communication l
 
 
 ```shell
-$ git clone -b mini_cyberdog https://github.com/MiRoboticsLab/cyberdog_motor_sdk #clone the motor sdk example code
+$ git clone -b cyberdog2 https://github.com/MiRoboticsLab/cyberdog_motor_sdk #clone the motor sdk example code
 $ scp -r cyberdog_motor_sdk mi@192.168.44.1:/home/mi/ #copy the example code to NX board, default password is 123
 $ ssh mi@192.168.44.1 #login to NX board
 mi@lubuntu:~$ cd /home/mi/cyberdog_motor_sdk
@@ -894,7 +894,7 @@ $ docker images
 3. Use the docker image to cross build the source code
 
 ```shell
-$ git clone -b mini_cyberdog https://github.com/MiRoboticsLab/cyberdog_motor_sdk # clone the low-level interface example code
+$ git clone -b cyberdog2 https://github.com/MiRoboticsLab/cyberdog_motor_sdk # clone the low-level interface example code
 $ docker run -it --rm --name cyberdog_motor_sdk -v /home/xxx/{sdk_path}:/work/build_farm/workspace/cyberdog cr.d.xiaomi.net/athena/athena_cheetah_arm64:2.0 /bin/bash #run docker image，/home/xxx/{sdk_path} is the absolute path to the example code folder
 [root:/work] # cd /work/build_farm/workspace/cyberdog/ 
 [root:/work/build_farm/workspace/cyberdog] # mkdir onboard-build && cd onboard-build
