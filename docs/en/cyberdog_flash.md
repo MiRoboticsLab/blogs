@@ -145,6 +145,19 @@ $ sudo ./flashall.sh --others-ota-conf-path flash_conf_file_path
 3. 语音提示“其他主板更新成功”，表示其他各个子板更新成功，此时全部刷机完成；
 4. 重启机器狗，具体的话，长按电源键5秒，松开电源键，再长按电源键5秒，此时机器狗重启成功并进入正常使用状态。
 
+> 注意：目前已知安装ros环境时，如果配置如下有关字符集的内容：
+>
+> ```bash
+> sudo apt update && sudo apt install locales
+> sudo locale-gen en_US en_US.UTF-8
+> sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+> export LANG=en_US.UTF-8
+> ```
+>
+> 会导致上述第一步升级完感知主板Xavier NX后不会继续执行之后的步骤。
+>
+> 此时需要手动重启机器狗才能继续执行上述第二步以及之后的步骤。
+
 ## 5. U盘卡刷方式
 
 **以下操作会导致U盘之前的所有数据全部丢失！！请提前做好备份！！**
@@ -405,13 +418,13 @@ enable otf function successfully!
 
 调试接口权限开启后，拆开调试盖板，有两种方式可以在PC中连接到机器狗：
 
-1. 通过网线将PC与机器狗直接连接，之后在PC端输入如下命令即可连接到机器狗：
+1. 通过网线将PC与机器狗直接连接，之后在PC端输入如下命令即可连接到机器狗（密码：123）：
 
    ```shell
    $ ssh mi@192.168.44.1
    ```
 
-2. 通过USB type-c线连接到机器狗（接口位于中间充电口的右侧），之后在PC端输入如下命令即可连接到机器狗：
+2. 通过USB type-c线连接到机器狗（接口位于中间充电口的右侧），之后在PC端输入如下命令即可连接到机器狗（密码：123）：
 
    ```shell
    $ ssh mi@192.168.55.1
