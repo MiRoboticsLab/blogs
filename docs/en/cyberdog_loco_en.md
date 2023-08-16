@@ -67,7 +67,7 @@ The robot coordinate system is shown in the figure (a) below, following the righ
 
 The positive rotation direction of the joints follows the right-hand rule around the rotation axis. The joint range, maximum speed and torque are shown in the table below.
 
-| Joint name | Joint range | Maximum speed | Maximum torque | Joint name | Joint range | Maximum speed | Maximum torque |
+| Joint name | Joint range[rad] | Maximum speed[m/s] | Maximum torque[Nm] | Joint name | Joint range[rad] | Maximum speed[m/s] | Maximum torque[Nm] |
 | ------- | -------------- | ----- | -- | ------- | -------------- | ----- | -- |
 | FR-abad | [-0.68, 0.68]  | 38.19 | 12 | FL-abad | [-0.68, 0.68]  | 38.19 | 12 |
 | FR-hip  | [2.79, -1.33]  | 38.19 | 12 | FL-hip  | [2.79, -1.33]  | 38.19 | 12 |
