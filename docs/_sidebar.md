@@ -33,6 +33,8 @@
 
 - 运控文档
   - [运动控制模块](cn/cyberdog_loco_cn.md)
+  - [仿真平台模块](cn/cyberdog_gazebo_cn.md)
+  
 
 - SLAM文档
   - [相机驱动](cn/cyberdog_camera_cn.md)
