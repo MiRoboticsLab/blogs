@@ -2,9 +2,8 @@
 ### 1. Introduction
 Gazebo simulation platform provide an environment for the communication of two main programs, gazebo simulator and cyberdog controller. Data of all the joints and sensors is converted and sent as ros2 topic.
 #### 1.1 Comunication frames
-The simulation platform contains of three program: cyberdog controller “cyberdog_control”, gazebo simulator “legged_plugins” and ros2 visualization interface “cyberdog_visual”. The communication of each program are shown in the graphic below.  
-<img src="image/cyberdog_gazebo/flow.jpeg
-" width="800"/>
+The simulation platform contains of three program: cyberdog controller “cyberdog_control”, gazebo simulator “legged_plugins” and ros2 visualization interface “cyberdog_visual”. The communication of each program are shown in the graphic below. 
+![](./image/cyberdog_gazebo/flow.jpeg) 
  
 - The cyberdog controller and gazebo simulator communicate through shared memory. The host shared memory created by gazebo simulator, and the control program communicates with it by attaching to the host memory. The content of communication is robotToSim/simToRobot.
 - The visualization interface accepts motor and odometer signals from the controller through lcm and publish them as ros2 topic “/joint_states” and “/tf”.
@@ -60,7 +59,7 @@ $ vcs import < cyberdog_sim.repos
 ```
 ##### 1.2.3 build
 BUILD_ROSshould be set to ON in src/cyberdog locomotion/CMakeLists.txt，which is shown in the picture below  
-<img src="image/cyberdog_gazebo/build_ros.png" width="800"/>
+![](./image/cyberdog_gazebo/build_ros.png) 
 
 Build all the packages in the directory cyberdog_sim/
 ```
@@ -74,7 +73,7 @@ run all program by script at directory cyberdog_sim/.
 ```
 $ python3 src/cyberdog_ros2/cyberdog_gazebo/script/launchsim.py
 ```
-<img src="image/cyberdog_gazebo/gazebo_rviz.png"/>  
+![](./image/cyberdog_gazebo/gazebo_rviz.png)  
  
 
 ##### 1.3.2 Run all program respectively
@@ -308,21 +307,21 @@ type: This parameter can be set to "world" or "quick". In the "world" mode, the 
 The robot model  are stored in the cyberdog_robot package, the mesh model is stored in the mesh folder, and the dynamics model file of the robot is stored in the xacro folder. The xacro file will be read by gazebo as urdf at ros2 launch, and the robot model will be generated in the simulator.
 For urdf related documents, please refer to [**Official urdf documentation**](https://docs.ros.org/en/foxy/Tutorials/Intermediate/URDF/URDF-Main.html)  
 The joint coordinate system and zero position of the robot model are shown in the figure below.  
-<img src="image/cyberdog_gazebo/coordinate.png" width="600"/> 
+![](./image/cyberdog_gazebo/coordinate.png) 
 
 
 In the simulation, the four legs of the robot are named FR, FL, RR, and RL respectively. The following is the name of each joint and component of the left front leg as an example.(squares are link name, circles are joint name)  
-<img src="image/cyberdog_gazebo/joint_and_link.jpg" width="900"/>
+![](./image/cyberdog_gazebo/joint_and_link.jpg) 
 
 
 #### 3.3 terrain settings
 The terrain of gazebo can be generated through heightmap, and the heightmap can be drawn by generating a grayscale image with a pixel size of (2^n+1)X(2^n+1). The grayscale image shown below
-<img src="image/cyberdog_gazebo/terrain.png">  
+![](./image/cyberdog_gazebo/terrain.png) 
 It should be noted that the size of the grayscale image must be (2^n+1)X(2^n+1) (such as 513X513), otherwise gazebo cannot read it.
 
 **Description of terrain generation method**
 Place the terrain image file in the directory media/materials/textures to generate terrain, and change the address in the hightmap.world file in the world/ folder to the address of the corresponding file in the red box in the figure below. You can also modify the surface material of the terrain by modifying the address in the blue box.  
-<img src="image/cyberdog_gazebo/heightmap.png" width="600"/> 
+![](./image/cyberdog_gazebo/heightmap.png) 
 
 After saving, gazebo simulator with generated terrain can be run as follow:
 ```
