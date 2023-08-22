@@ -3,8 +3,7 @@
 gazebo仿真平台能够使gazebo仿真程序直接与cyeberdog的控制程序cybredog_control进行通信，并将机器人的各关节数据与传感器数据转发为ros2 topic。
 #### 1.1 通信框架
 仿真环境目前主要由三个程序组成：cyberdog的控制程序cybredog_control，gazebo仿真程序legged_plugins和基于ros2可视化界面cyberdog_visual，其关系如下图所示。  
-<img src="image/cyberdog_gazebo/flow.jpg
-" width="800"/>
+![](./image/cyberdog_gazebo/flow.jpg) 
  
 - cyberdog控制程序和gazebo之间通过sharedmemory进行通信，gazebo程序创建host的共享内存，控制程序通过attach到该内存上进行通信。其通信的内容为robotToSim/simToRobot。
 - ros2仿真界面接受从控制程序通过lcm发送的电机和里程计信号等信号并通过topic转发为 /joint_states 与 /tf。
@@ -59,7 +58,7 @@ $ vcs import < cyberdog_sim.repos
 ```
 ##### 1.2.3 编译
 需要确认src/cyberdog locomotion/CMakeLists.txt中的BUILD_ROS置为ON，如下图所示  
-<img src="image/cyberdog_gazebo/build_ros.png" width="800"/>
+![](./image/cyberdog_gazebo/build_ros.png)
 
 需要在cyberdog_sim文件夹下运行
 ```
@@ -73,7 +72,7 @@ $ colcon build --merge-install --symlink-install --packages-up-to cyberdog_locom
 ```
 $ python3 src/cyberdog_ros2/cyberdog_gazebo/script/launchsim.py
 ```
-<img src="image/cyberdog_gazebo/gazebo_rviz.png"/>  
+![](./image/cyberdog_gazebo/gazebo_rviz.png)  
  
 
 ##### 1.3.2 分别运行各程序
@@ -311,21 +310,21 @@ type: 该参数可设置为“world”或“quick”，“world”模式下ode�
 机器人模型参数存放于cyberdog_robot包中，mesh文件夹下存放了机器人模型，xacro文件夹下存放了机器人的xacro模型文件，该文件会在launch是作为urdf被gazebo读取，在仿真平台中生成机器人模型。  
 urdf相关文档可参照[**官方urdf文档**](https://docs.ros.org/en/foxy/Tutorials/Intermediate/URDF/URDF-Main.html)  
 机器人模型的关节坐标系与零位如下图所示。  
-<img src="image/cyberdog_gazebo/coordinate.png" width="600"/> 
+![](./image/cyberdog_gazebo/coordinate.png) 
 
 
 仿真中机器人四条腿分别以FR,FL,RR,RL来命名，以下为左前退为例各关节和构件的名称。(方形为构件名，椭圆为关节名)
-<img src="image/cyberdog_gazebo/joint_and_link.jpg" width="900"/>
+![](./image/cyberdog_gazebo/joint_and_link.jpg) 
 
 
 #### 3.3 地形设置
 gazebo的地形可通过heightmap进行生成，可通过生成一张像素为（2^n+1）X（2^n+1）大小的灰度图来进行heightmap的绘制。如下图所示的灰度图  
-<img src="image/cyberdog_gazebo/terrain.png">  
+![](./image/cyberdog_gazebo/terrain.png) 
 需要注意灰度图的大小必须为（2^n+1）X（2^n+1）(如513X513)，否则gazebo无法读取。  
 
 **地形生成方法的说明**
 将要生成的地形图像文件放置在media/materials/textures文件夹下，将world文件夹下的hightmap.world文件中如下图中红框所是地址改为对应文件的地址即可。也可通过修改蓝框处的地址修改地形的表面材质。  
-<img src="image/cyberdog_gazebo/heightmap.png" width="600"/> 
+![](./image/cyberdog_gazebo/heightmap.png)  
 
 保存后运行以下程序即可启动gazebo程序并生成地形
 ```
