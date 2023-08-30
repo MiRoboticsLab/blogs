@@ -426,7 +426,7 @@ struct localization_lcmt {
 ```
 ### 2.4 Interface Example
 In this section, three example codes of the high-level interface are introduced for reference, and the code can be deployed on the user's computer or NX application board to run. If deployed on the user's computer, it is necessary to install the LCM communication library according to the steps described in Section 1.2.
-> Example Code repository: waiting to be public
+> Example Code repository: https://github.com/MiRoboticsLab/loco_hl_example
 
 #### 2.4.1 Basic Motion
 This example code is a Python script, which controls the robot to complete the actions of standing, shaking hands, bowing, raising the head, bowing the head, stepping and rotating, and getting down in sequence.
