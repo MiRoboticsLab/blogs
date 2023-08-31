@@ -63,14 +63,14 @@ $ vcs import < cyberdog_sim.repos
 需要在cyberdog_sim文件夹下运行
 ```
 $ source /opt/ros/galactic/setup.bash 
-$ colcon build --merge-install --symlink-install --packages-up-to cyberdog_locomotion cyberdog_ros2
+$ colcon build --merge-install --symlink-install --packages-up-to cyberdog_locomotion cyberdog_simulator
 ```
 
 #### 1.3 运行
 ##### 1.3.1 脚本启动所有程序
 需要在cyberdog_sim文件夹下运行以下命令即可打开gazebo仿真，cyberdog控制与rviz可视化程序。
 ```
-$ python3 src/cyberdog_ros2/cyberdog_gazebo/script/launchsim.py
+$ python3 src/cyberdog_simulator/cyberdog_gazebo/script/launchsim.py
 ```
 ![](./image/cyberdog_gazebo/gazebo_rviz.png)  
  
@@ -94,8 +94,8 @@ $ ros2 launch cyberdog_gazebo gazebo.launch.py use_lidar:=true
 ```
 $ source /opt/ros/galactic/setup.bash
 $ source install/setup.bash
-$ chmod +x src/cyberdog_ros2/cyberdog_gazebo/script/gazebolauncher.py
-$ python3 src/cyberdog_ros2/cyberdog_gazebo/script/gazebolauncher.py ros2 launch cyberdog_gazebo gazebo.launch.py
+$ chmod +x src/cyberdog_simulator/cyberdog_gazebo/script/gazebolauncher.py
+$ python3 src/cyberdog_simulator/cyberdog_gazebo/script/gazebolauncher.py ros2 launch cyberdog_gazebo gazebo.launch.py
 ```
 **cyberdog控制程序**  
 然后启动cyberdog_locomotion的控制程序。在cyberdog_sim文件夹下运行：
