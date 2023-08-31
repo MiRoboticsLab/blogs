@@ -64,14 +64,14 @@ BUILD_ROSshould be set to ON in src/cyberdog locomotion/CMakeLists.txt，which i
 Build all the packages in the directory cyberdog_sim/
 ```
 $ source /opt/ros/galactic/setup.bash 
-$ colcon build --merge-install --symlink-install --packages-up-to cyberdog_locomotion cyberdog_ros2
+$ colcon build --merge-install --symlink-install --packages-up-to cyberdog_locomotion cyberdog_simulatior
 ```
 
 #### 1.3 Run
 ##### 1.3.1 Run all program by script
 run all program by script at directory cyberdog_sim/.
 ```
-$ python3 src/cyberdog_ros2/cyberdog_gazebo/script/launchsim.py
+$ python3 src/cyberdog_simulator/cyberdog_gazebo/script/launchsim.py
 ```
 ![](./image/cyberdog_gazebo/gazebo_rviz.png)  
  
@@ -95,8 +95,8 @@ For the problem that the gazebo process cannot be completely killed by ctrl+C, y
 ```
 $ source /opt/ros/galactic/setup.bash
 $ source install/setup.bash
-$ chmod +x src/cyberdog_ros2/cyberdog_gazebo/script/gazebolauncher.py
-$ python3 src/cyberdog_ros2/cyberdog_gazebo/script/gazebolauncher.py ros2 launch cyberdog_gazebo gazebo.launch.py
+$ chmod +x src/cyberdog_simulator/cyberdog_gazebo/script/gazebolauncher.py
+$ python3 src/cyberdog_simulator/cyberdog_gazebo/script/gazebolauncher.py ros2 launch cyberdog_gazebo gazebo.launch.py
 ```
 **Cyberdog controller**  
 Then run the cyberdog controller at directory cyberdog_sim/：
