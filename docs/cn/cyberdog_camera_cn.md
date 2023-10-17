@@ -61,6 +61,18 @@ $ ros2 service call /camera_service protocol/srv/CameraService "{command: 3, arg
 
 ### 双目/RGB相机ros2程序
 ```console
+//启动stereo_camera
 ros2 run camera_test stereo_camera
+
+//如果使用开机自启的stereo_camera，注意topic前加上命名空间
+ros2 lifecycle set /stereo_camera configure
+
+ros2 lifecycle set /stereo_camera activate
+
+ros2 lifecycle set /stereo_camera deactivate
+
+ros2 lifecycle set /camera/camera cleanup
+
+
 ```
 运行之后，双目相机和RGB相机将通过/image_left、/image_right、/image_rgb三个topic发布图像。
