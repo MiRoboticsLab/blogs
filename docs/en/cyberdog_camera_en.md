@@ -62,5 +62,13 @@ $ ros2 service call /camera_service protocol/srv/CameraService "{command: 3, arg
 ### ROS2 program for stereo/RGB cameras
 ```console
 ros2 run camera_test stereo_camera
+//configure
+ros2 lifecycle set /stereo_camera configure
+//activate
+ros2 lifecycle set /stereo_camera activate
+
+ros2 lifecycle set /stereo_camera deactivate
+
+ros2 lifecycle set /camera/camera cleanup
 ```
 After running, the stereo camera and RGB camera will publish images through the /image_left, /image_right, and /image_rgb topics.
