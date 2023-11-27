@@ -88,7 +88,7 @@ RUN echo "deb https://mirrors.tuna.tsinghua.edu.cn/ros2/ubuntu/ bionic main" > /
 
 ```Bash
 RUN mkdir carpo-ros2-debs \
-&& wget https://cnbj2m-fds.api.xiaomi.net/bsp-internal/ROS/carpo-ros2-debs/carpo-ros2-debs.tgz \
+&& wget https://cnbj2m.fds.api.xiaomi.com/bsp-internal/ROS/carpo-ros2-debs/carpo-ros2-debs.tgz \
 && tar -xf carpo-ros2-debs.tgz -C carpo-ros2-debs \
 && dpkg -i carpo-ros2-debs/*.deb \
 && rm -rf *
