@@ -3,7 +3,7 @@
 ## 刷机包在哪里下载？
 
 ```Bash
-【CyberDog2 刷机包下载】https://s.xiaomi.cn/c/MSkyI-B2
+【CyberDog2 刷机包下载】https://s.xiaomi.cn/c/8JEpGDY8
 ```
 
 ## 雷达自检失败是什么原因？
