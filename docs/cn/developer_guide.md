@@ -2080,7 +2080,7 @@ int32 task_sub_status
 - 关闭方式见关闭任务service接口，其中所需的关键request字段包含：
 
 ```js
-"task_id: 5"          # 1表示关闭建图
+"task_id: 5"          # 5表示关闭建图
 ```
 
 ### 视觉建图 
