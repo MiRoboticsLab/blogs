@@ -62,9 +62,8 @@ ENV DEBIAN_FRONTEND noninteractive
 ```Bash
 RUN wget https://cnbj2m.fds.api.xiaomi.com/bsp-internal/ROS/open-source-docker-depends/base-deb.tar.gz \
 && tar -xzvf base-deb.tar.gz \
-&& cp base-deb/*.deb /var/cache/apt/archives/ \
-&& apt install --no-install-recommends /var/cache/apt/archives/*.deb \
-&& rm -rf *
+&& cp base-deb/*.deb /var/cache/apt/archives/
+RUN echo y| apt-get install --no-install-recommends /var/cache/apt/archives/*.deb && rm -rf *
 ```
 
 **7.修改pip**
